@@ -12,7 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('konser', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id_konser')->primary()->autoIncrement();
+            $table->string('nama_konser', 150);
+            $table->string('nama_artis_band', 100);
+            $table->string('lokasi', 150);
+            $table->date('tanggal_konser');
+            $table->time('waktu_konser');
+            $table->string('deskripsi');
             $table->timestamps();
         });
     }

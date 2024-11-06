@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('seat_allocations', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id_lokasi')->primary()->autoIncrement();
+            $table->string('order_id', 150);
+            $table->integer('nomor_tempat_duduk');
             $table->timestamps();
         });
     }
