@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('diskon', function (Blueprint $table) {
-            $table->integer('id_didkon')->primary();
+            $table->integer('id_diskon')->primary();
 
-            $table->integer('order_id');
+            $table->string('order_id');
             $table->foreign('order_id')
                   ->references('order_id')
                   ->on('tiket')
@@ -22,7 +22,7 @@ return new class extends Migration
                   ->onUpdate('casecade'); //relasi ke tiket
 
             $table->string('diskon_kode', 20)->unique();
-            $table->decimal('persentase_dikon', 10, 2);
+            $table->string('persentase_diskon', 10);
             $table->date('tanggal_kadaluarsa');
             $table->timestamps();
         });
