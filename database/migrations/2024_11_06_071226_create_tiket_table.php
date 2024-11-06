@@ -12,8 +12,27 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tiket', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id_tiket')->primary();
+            $table->string('order_id')->unique();
+
+            $table->integer('users_id');
+            $table->foreign('users_id')
+                ->references('users_id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->integer('id_kategori_tiket');
+            $table->foreign('id_kategori_tiket')
+                ->references('id_kategori_tiket')
+                ->on('kategori')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->integer('quantity');
+            $table->enum('status', ['booked', 'paid', 'cancelled']);
             $table->timestamps();
+
         });
     }
 

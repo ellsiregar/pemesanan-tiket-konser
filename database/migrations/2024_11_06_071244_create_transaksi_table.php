@@ -12,7 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transaksi', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id_transaksi')->primary();
+            $table->string('order_id');
+            $table->foreign('order_id')
+                ->references('order_id')
+                ->on('tiket')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->string('payment_method');
+            $table->enum('payment_status', ['pending', 'completed', 'failed']);
+            $table->timestamp('transaction_date');
+            $table->integer('amount');
             $table->timestamps();
         });
     }
@@ -22,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transaksi');
+        Schema::dropIfExists('seat_allocations');
     }
 };
