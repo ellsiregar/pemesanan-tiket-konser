@@ -12,7 +12,26 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id_review')->primary();
+
+            $table->integer('id_konser');
+            $table->foreign('id_konser')
+                  ->references('id_konser')
+                  ->on('konser')
+                  ->onDelete('casecade')
+                  ->onUpdate('casecade'); // relasi ke konser
+
+            $table->integer('users_id');
+            $table->foreign('users_id')
+                  ->references('users_id')
+                  ->on('users')
+                  ->onDelete('casecade')
+                  ->onUpdate('casecade'); // relasi ke user
+
+            $table->integer('rating');
+            $table->text('comment');
+            $table->timestamp('riview_date');
+
             $table->timestamps();
         });
     }
