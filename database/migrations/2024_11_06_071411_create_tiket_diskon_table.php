@@ -12,21 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tiket_diskon', function (Blueprint $table) {
-            $table->integer('id_tiket_diskon')->primary();
+            $table->integer('id_tiket_diskon')->primary()->autoIncrement();
 
             $table->integer('id_tiket');
             $table->foreign('id_tiket')
                   ->reference('id_tiket')
                   ->on('tiket')
-                  ->onDelete('casecade')
-                  ->onUpdate('casecade'); // relasi ke tiket
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade'); // relasi ke tiket
 
             $table->integer('id_diskon');
             $table->foreign('id_diskon')
                   ->references('id_didkon')
                   ->on('diskon')
-                  ->onDelete('casecade')
-                  ->onUpdate('casecade'); // relasi ke diskon
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade'); // relasi ke diskon
 
             $table->timestamp('appliad_date');
 

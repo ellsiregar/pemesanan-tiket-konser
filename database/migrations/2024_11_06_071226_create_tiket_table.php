@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tiket', function (Blueprint $table) {
-            $table->integer('id_tiket')->primary();
+            $table->integer('id_tiket')->primary()->autoIncrement();
             $table->string('order_id')->unique();
 
             $table->integer('users_id');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->integer('id_kategori_tiket');
             $table->foreign('id_kategori_tiket')
                 ->references('id_kategori_tiket')
-                ->on('kategori')
+                ->on('kategori_tiket')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
