@@ -11,7 +11,8 @@ class TiketDiskon extends Model
     protected $primaryKey = 'id_tiket_diskon';
 
     protected $fillable = [
-        'id_tiket_diskon',
+        'id_tiket',
+        'id_diskon',
         'appliad_date',
     ];
 }

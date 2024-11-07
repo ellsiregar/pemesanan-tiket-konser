@@ -10,7 +10,6 @@ class SeatAllocations extends Model
     protected $primaryKey = 'id_lokasi';
 
     protected$fillable = [
-        'id_lokasi',
         'order_id',
         'nomor_tempat_duduk',
     ];

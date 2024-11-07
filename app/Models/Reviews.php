@@ -11,9 +11,10 @@ class Reviews extends Model
     protected $primaryKey = 'id_review';
 
     protected $fillable = [
-        'id_riview',
+        'id_konser',
+        'users_id',
         'rating',
         'comment',
-
+        'riview_date',
     ];
 }
