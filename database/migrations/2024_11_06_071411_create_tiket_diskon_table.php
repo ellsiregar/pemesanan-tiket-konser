@@ -16,14 +16,14 @@ return new class extends Migration
 
             $table->integer('id_tiket');
             $table->foreign('id_tiket')
-                  ->reference('id_tiket')
+                  ->references('id_tiket')
                   ->on('tiket')
                   ->onDelete('cascade')
                   ->onUpdate('cascade'); // relasi ke tiket
 
             $table->integer('id_diskon');
             $table->foreign('id_diskon')
-                  ->references('id_didkon')
+                  ->references('id_diskon')
                   ->on('diskon')
                   ->onDelete('cascade')
                   ->onUpdate('cascade'); // relasi ke diskon
