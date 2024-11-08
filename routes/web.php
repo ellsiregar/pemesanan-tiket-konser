@@ -10,6 +10,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 route::middleware(['guest:admin', 'guest:user'])->group(function() {
     route::get('/admin/login', [UserLoginController::class, "login"])->name('admin.UserLogin');
     route::post('/admin/submit', [UserLoginController::class, "submit"])->name('admin.UserSubmit');
@@ -24,3 +25,8 @@ Route::middleware(['role:admin'])->group(function () {
 Route::middleware(['role:user'])->group (function(){
     route::get('/user/dashboard', [UserController::class, "dashboard"])->name('user.dashboard');
 });
+=======
+Route::get('/layouts', function () {
+    return view('backend.admin.layouts.app');
+});
+>>>>>>> origin/main
