@@ -29,7 +29,7 @@
                                     <img src="../assets/images/logos/logo-light.svg" alt="">
                                 </a>
                                 <p class="text-center">Your Social Campaigns</p>
-                                <form action="{{ route('admin.AdminSubmit') }}" method="POST">
+                                <form action="{{ route('admin.UserSubmit') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
