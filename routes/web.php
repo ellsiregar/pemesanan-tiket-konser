@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\UserLoginController;
+use App\Http\Controllers\Backend\KonserController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Admin;
@@ -20,6 +21,9 @@ route::middleware(['guest:admin', 'guest:user'])->group(function() {
 Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+    Route::get('/konser/create',[KonserController::class, "create"])->name('konser_create');
+    Route::post('/konser/store',[KonserController::class, "store"])->name('konser_store');
 });
 
 Route::middleware(['role:user'])->group (function(){

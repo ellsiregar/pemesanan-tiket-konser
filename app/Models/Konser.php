@@ -11,7 +11,7 @@ class Konser extends Model
 
     protected $fillable = [
         'nama_konser',
-        'nama_artis_ben',
+        'nama_artis_band',
         'lokasi',
         'tanggal_konser',
         'waktu_konser',
