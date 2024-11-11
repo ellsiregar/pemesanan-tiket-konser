@@ -7,7 +7,7 @@
 <div class="col-lg-12">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">View by page title and screen class</h5>
+        <h5 class="card-title">Website Pemesanan Tiket</h5>
         <div class="table-responsive">
           <table class="table text-nowrap align-middle mb-0">
             <thead>
@@ -21,8 +21,7 @@
             <tbody class="table-group-divider">
               <tr>
                 <th scope="row" class="ps-0 fw-medium">
-                  <span class="table-link1 text-truncate d-block">Welcome to our
-                    website</span>
+                  <span class="table-link1 text-truncate d-block">Konser</span>
                 </th>
                 <td>
                   <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/index.html</a>
@@ -32,8 +31,7 @@
               </tr>
               <tr>
                 <th scope="row" class="ps-0 fw-medium">
-                  <span class="table-link1 text-truncate d-block">Modern Admin
-                    Dashboard Template</span>
+                  <span class="table-link1 text-truncate d-block">Tiket</span>
                 </th>
                 <td>
                   <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/dashboard</a>
@@ -43,8 +41,7 @@
               </tr>
               <tr>
                 <th scope="row" class="ps-0 fw-medium">
-                  <span class="table-link1 text-truncate d-block">Explore our
-                    product catalog</span>
+                  <span class="table-link1 text-truncate d-block">SeatAllocations</span>
                 </th>
                 <td>
                   <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/product-checkout</a>
@@ -54,8 +51,7 @@
               </tr>
               <tr>
                 <th scope="row" class="ps-0 fw-medium">
-                  <span class="table-link1 text-truncate d-block">Comprehensive
-                    User Guide</span>
+                  <span class="table-link1 text-truncate d-block">Transaksi</span>
                 </th>
                 <td>
                   <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/docs</a>
@@ -65,8 +61,7 @@
               </tr>
               <tr>
                 <th scope="row" class="ps-0 fw-medium border-0">
-                  <span class="table-link1 text-truncate d-block">Check out our
-                    services</span>
+                  <span class="table-link1 text-truncate d-block">Review</span>
                 </th>
                 <td class="border-0">
                   <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/services</a>
