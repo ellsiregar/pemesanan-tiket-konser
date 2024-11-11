@@ -19,6 +19,7 @@ route::middleware(['guest:admin', 'guest:user'])->group(function() {
 
 Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
 
 Route::middleware(['role:user'])->group (function(){
