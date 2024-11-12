@@ -45,6 +45,39 @@ class KonserController extends Controller
 
     }
 
+    public function edit(string $id)
+    {
+        $konser = Konser::find($id);
+        if(!$konser) {
+            return back();
+        }
+        return view('backend.admin.edit_konser', compact('konser'));
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $konser = Konser::find($id);
+
+        $request->validate([
+            'nama_konser' => 'required',
+            'nama_artis_band' => 'required',
+            'lokasi' => 'required',
+            'tanggal_konser' => 'required',
+            'waktu_konser' => 'required',
+            'deskripsi' => 'required',
+        ]);
+
+        $konser->update([
+            'nama_konser' => $request->nama_konser,
+            'nama_artis_band' => $request->nama_artis_band,
+            'lokasi' => $request->lokasi,
+            'tanggal_konser' => $request->tanggal_konser,
+            'waktu_konser' => $request->waktu_konser,
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        return redirect()->route('admin.dashboard')->with('success', "Data konser Berhasil di Edit");
+    }
     public function delete($id_konser){
         $konser = Konser::find($id_konser);
         $konser->delete();
