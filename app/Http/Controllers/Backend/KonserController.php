@@ -10,6 +10,11 @@ class KonserController extends Controller
 {
 
 
+    public function konser()
+    {
+        $konsers = Konser::all();
+        return view('backend.admin.konser', compact('konsers'));
+    }
 
     public function create()
     {
@@ -36,7 +41,7 @@ class KonserController extends Controller
             'waktu_konser' => $request->waktu_konser,
             'deskripsi' => $request->deskripsi,
         ]);
-        return redirect()->route('admin.dashboard')->with('success', 'Konser berhasil ditambahkan!');
+        return redirect()->route('konser')->with('success', 'Konser berhasil ditambahkan!');
 
     }
 

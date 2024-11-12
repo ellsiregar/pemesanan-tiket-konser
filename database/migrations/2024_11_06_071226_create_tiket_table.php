@@ -25,7 +25,7 @@ return new class extends Migration
             $table->integer('id_kategori_tiket');
             $table->foreign('id_kategori_tiket')
                 ->references('id_kategori_tiket')
-                ->on('ketegori_tiket')
+                ->on('kategori_tiket')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 

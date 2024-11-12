@@ -40,6 +40,22 @@
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('konser')}}" aria-expanded="false">
+                  <span>
+                    <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
+                  </span>
+                  <span class="hide-menu">Konser</span>
+                </a>
+              </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.tiket_kategori')}}" aria-expanded="false">
+                  <span>
+                    <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
+                  </span>
+                  <span class="hide-menu">Kategori</span>
+                </a>
+              </li>
           </ul>
           <div class="unlimited-access hide-menu bg-primary-subtle position-relative mb-7 mt-7 rounded-3">
             <div class="d-flex">

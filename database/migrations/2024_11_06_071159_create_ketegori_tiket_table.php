@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ketegori_tiket', function (Blueprint $table) {
+        Schema::create('kategori_tiket', function (Blueprint $table) {
             $table->integer('id_kategori_tiket')->primary()->autoIncrement();
             $table->integer('id_konser');
             $table->foreign('id_konser')
