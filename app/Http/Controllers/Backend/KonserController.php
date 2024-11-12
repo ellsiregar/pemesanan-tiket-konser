@@ -76,7 +76,7 @@ class KonserController extends Controller
             'deskripsi' => $request->deskripsi,
         ]);
 
-        return redirect()->route('admin.dashboard')->with('success', "Data konser Berhasil di Edit");
+        return redirect()->route('konser')->with('success', "Data konser Berhasil di Edit");
     }
     public function delete($id_konser){
         $konser = Konser::find($id_konser);

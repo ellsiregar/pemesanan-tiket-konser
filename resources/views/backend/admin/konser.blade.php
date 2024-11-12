@@ -37,7 +37,7 @@
                                 <td>{{$konser->waktu_konser}}</td>
                                 <td>{{$konser->deskripsi}}</td>
                                 <td>
-                                    <a href="" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="{{route('konser_edit', $konser->id_konser)}}" class="btn btn-warning btn-sm">Edit</a>
                                     <a href="{{route('konser_delete', $konser->id_konser)}}" onclick="return confirm('Yakin ingin hapus data?')" class="btn btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
