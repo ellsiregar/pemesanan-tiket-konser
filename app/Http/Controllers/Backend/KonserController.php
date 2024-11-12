@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 class KonserController extends Controller
 {
 
-    public function create() {
+
+
+    public function create()
+    {
         return view('backend.admin.tambah_konser');
     }
 
@@ -17,12 +20,12 @@ class KonserController extends Controller
     {
 
         $request->validate([
-            'nama_konser' => 'required|string|max:255',
-            'nama_artis_band' => 'required|string|max:255',
-            'lokasi' => 'required|string|max:255',
-            'tanggal_konser' => 'required|date',
+            'nama_konser' => 'required',
+            'nama_artis_band' => 'required',
+            'lokasi' => 'required',
+            'tanggal_konser' => 'required',
             'waktu_konser' => 'required',
-            'deskripsi' => 'required|string',
+            'deskripsi' => 'required',
         ]);
 
         Konser::create([
@@ -33,8 +36,21 @@ class KonserController extends Controller
             'waktu_konser' => $request->waktu_konser,
             'deskripsi' => $request->deskripsi,
         ]);
+        return redirect()->route('admin.dashboard')->with('success', 'Konser berhasil ditambahkan!');
 
-        return redirect()->route('konser_index')->with('success', 'Konser berhasil ditambahkan!');
     }
 
+    public function delete($id_konser){
+        $konser = Konser::find($id_konser);
+        $konser->delete();
+
+    if (!$konser) {
+        return redirect()->back()->with('error', 'Data konser tidak ditemukan.');
+    }
+
+    $konser->delete();
+
+    return redirect()->back()->with('success', 'Data konser berhasil dihapus.');
+
+    }
 }

@@ -5,6 +5,11 @@
 @section('content')
 
     <div class="col-lg-12">
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>
+        @endif
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Website Pemesanan Tiket</h5>
@@ -23,21 +28,21 @@
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
+                            @foreach ($konsers as $konser )
                             <tr>
-                                <th scope="row" class="ps-0 fw-medium">
-                                    <span class="table-link1 text-truncate d-block">ndx</span>
-                                </th>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{$konser->nama_konser}}</td>
+                                <td>{{$konser->lokasi}}</td>
+                                <td>{{$konser->tanggal_konser}}</td>
+                                <td>{{$konser->waktu_konser}}</td>
+                                <td>{{$konser->deskripsi}}</td>
                                 <td>
-                                    <a href="javascript:void(0)"
-                                        class="link-primary text-dark fw-medium d-block">NDX</a>
-                                </td>
-                                <td class="text-center fw-medium">metro</td>
-                                <td class="text-center fw-medium">06-11-2077</td>
-                                <td class="text-center fw-medium">
-                                    <button class="btn btn-warning btn-sm">edit</button>
-                                    <button class="btn btn-danger btn-sm">hapus</button>
+                                    <a href="" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="{{route('konser_delete', $konser->id_konser)}}" onclick="return confirm('Yakin ingin hapus data?')" class="btn btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
                 </div>

@@ -24,6 +24,7 @@ Route::middleware(['role:admin'])->group(function () {
 
     Route::get('/konser/create',[KonserController::class, "create"])->name('konser_create');
     Route::post('/konser/store',[KonserController::class, "store"])->name('konser_store');
+    Route::get('/konser/delete/{id_konser}',[KonserController::class, "delete"])->name('konser_delete');
 });
 
 Route::middleware(['role:user'])->group (function(){
