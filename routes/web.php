@@ -24,6 +24,8 @@ Route::middleware(['role:admin'])->group(function () {
 
     Route::get('/konser/create',[KonserController::class, "create"])->name('konser_create');
     Route::post('/konser/store',[KonserController::class, "store"])->name('konser_store');
+    Route::get('/konser/edit/{id_konser}', [KonserController::class, 'edit'])->name('konser_edit');
+    Route::put('/konser/edit/{id_konser}', [KonserController::class, 'update'])->name('konser_update');
     Route::get('/konser/delete/{id_konser}',[KonserController::class, "delete"])->name('konser_delete');
 });
 
