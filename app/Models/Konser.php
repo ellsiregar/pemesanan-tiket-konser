@@ -18,4 +18,8 @@ class Konser extends Model
         'deskripsi',
     ];
 
+    public function KategoriTiket(){
+        return $this->hasMany(KategoriTiket::class, 'id_konser', 'id_konser');
+    }
+
 }

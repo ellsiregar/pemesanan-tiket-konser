@@ -11,7 +11,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::middleware(['guest:admin', 'guest:user'])->group(function() {
+Route::middleware(['guest:admin', 'guest:user'])->group(function() {
     route::get('/admin/login', [UserLoginController::class, "login"])->name('admin.UserLogin');
     route::post('/admin/submit', [UserLoginController::class, "submit"])->name('admin.UserSubmit');
 });
@@ -33,6 +33,8 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/konser/delete/{id_konser}',[KonserController::class, "delete"])->name('konser_delete');
 
     Route::get('/admin/tiket_kategori',[KategoriTiketController::class, "tiket_kategori"])->name('admin.tiket_kategori');
+    Route::get('/tiket/create',[KategoriTiketController::class, "create"])->name('tiket_create');
+    Route::post('/tiket/store',[KategoriTiketController::class, "store"])->name('tiket_store');
 });
 
 Route::middleware(['role:user'])->group (function(){

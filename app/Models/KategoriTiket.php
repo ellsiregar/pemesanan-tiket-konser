@@ -15,4 +15,8 @@ class KategoriTiket extends Model
         'harga_tiket',
         'jumlah_tiket',
     ];
+
+    public function Konser(){
+        return $this->belongsTo(Konser::class, 'id_konser', 'id_konser');
+    }
 }
