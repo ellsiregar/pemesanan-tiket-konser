@@ -34,8 +34,8 @@
                                 <td>{{$KategoriTiket->harga_tiket}}</td>
                                 <td>{{$KategoriTiket->jumlah_tiket}}</td>
                                 <td>
-                                    <a href="" class="btn btn-warning btn-sm">Edit</a>
-                                    <a href="" onclick="return confirm('Yakin ingin hapus data?')" class="btn btn-danger btn-sm">Delete</a>
+                                    <a href="{{ route('tiket_edit', $KategoriTiket->id_kategori_tiket) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="{{ route('tiket_delete', $KategoriTiket->id_kategori_tiket) }}" onclick="return confirm('Yakin ingin hapus data?')" class="btn btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
                             @endforeach

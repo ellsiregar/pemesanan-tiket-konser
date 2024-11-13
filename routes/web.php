@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\UserLoginController;
 use App\Http\Controllers\Backend\KategoriTiketController;
 use App\Http\Controllers\Backend\KonserController;
 use App\Http\Controllers\User\UserController;
+use App\Models\KategoriTiket;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,6 +33,10 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/tiket_kategori',[KategoriTiketController::class, "tiket_kategori"])->name('admin.tiket_kategori');
     Route::get('/tiket/create',[KategoriTiketController::class, "create"])->name('tiket_create');
     Route::post('/tiket/store',[KategoriTiketController::class, "store"])->name('tiket_store');
+    Route::get('tiket/edit/{id_kategori_tiket}', [KategoriTiketController::class, 'edit'])->name('tiket_edit');
+    Route::put('/tiket/edit/{id_kategori_tiket}', [KategoriTiketController::class, 'update'])->name('tiket_update');
+    Route::get('/tiket/delete/{id_kategori_tiket}',[KategoriTiketController::class, "delete"])->name('tiket_delete');
+
 });
 
 Route::middleware(['role:user'])->group (function(){
