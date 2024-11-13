@@ -41,4 +41,50 @@ class KategoriTiketController extends Controller
         return redirect()->route('admin.tiket_kategori')->with('success', 'Kategori tiket berhasil ditambahkan!');
 
     }
+
+    public function edit(string $id)
+    {
+        $KategoriTiket = KategoriTiket::find($id);
+        $konsers = Konser::all();
+
+        if(!$KategoriTiket) {
+            return back();
+        }
+        return view('backend.admin.edit_kategori_tiket', compact('KategoriTiket', 'konsers'));
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $KategoriTiket = KategoriTiket::find($id);
+
+        $request->validate([
+            'id_konser' => 'required',
+            'nama_kategori' => 'required',
+            'harga_tiket' => 'required',
+            'jumlah_tiket' => 'required',
+        ]);
+
+        $KategoriTiket->update([
+            'id_konser' => $request->id_konser,
+            'nama_kategori' => $request->nama_kategori,
+            'harga_tiket' => $request->harga_tiket,
+            'jumlah_tiket' => $request->jumlah_tiket,
+        ]);
+
+        return redirect()->route('admin.tiket_kategori')->with('success', "Data tiket Berhasil di Edit");
+    }
+
+    public function delete($id_kategori_tiket){
+        $KategoriTiket = KategoriTiket::find($id_kategori_tiket);
+        $KategoriTiket->delete();
+
+    if (!$KategoriTiket) {
+        return redirect()->back()->with('error', 'Data tiket tidak ditemukan.');
+    }
+
+    $KategoriTiket->delete();
+
+    return redirect()->back()->with('success', 'Data tiket  berhasil dihapus.');
+
+    }
 }
