@@ -48,4 +48,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function Tiket(){
+        return $this->hasMany(Tiket::class, 'id_tiket', 'id_tiket');
+    }
 }

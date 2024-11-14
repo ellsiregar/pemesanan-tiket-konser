@@ -19,4 +19,8 @@ class KategoriTiket extends Model
     public function Konser(){
         return $this->belongsTo(Konser::class, 'id_konser', 'id_konser');
     }
+
+    public function Tiket(){
+        return $this->hasMany(Tiket::class, 'id_tiket', 'id_tiket');
+    }
 }

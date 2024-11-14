@@ -18,4 +18,12 @@ class Tiket extends Model
 
 
     ];
+
+    public function User(){
+        return $this->belongsTo(User::class, 'users_id', 'users_id');
+    }
+
+    public function KategoriTiket(){
+        return $this->belongsTo(User::class, 'id_kategori_tiket', 'id_kategori_tiket');
+    }
 }
