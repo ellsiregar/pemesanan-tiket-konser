@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('diskon', function (Blueprint $table) {
             $table->integer('id_diskon')->primary()->autoIncrement();
 
-            $table->string('order_id');
-            $table->foreign('order_id')
-                  ->references('order_id')
+            $table->integer('id_tiket');
+            $table->foreign('id_tiket')
+                  ->references('id_tiket')
                   ->on('tiket')
                   ->onDelete('cascade')
                   ->onUpdate('cascade'); //relasi ke tiket

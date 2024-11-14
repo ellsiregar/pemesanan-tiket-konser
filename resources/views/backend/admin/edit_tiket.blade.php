@@ -12,21 +12,6 @@
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
-                    <label for="order_id" class="form-label">Order</label>
-                    <select name="order_id" id="order_id" class="form-select">
-                        <option value="">-pilih-</option>
-                        @foreach ($orders as $order)
-                            <option value="{{ $order->order_id }}">{{ $order->order_id }}</option>
-                        @endforeach
-                    </select>
-                    <div class="text-danger">
-                        @error('order_id')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="mb-3">
                     <label for="users_id" class="form-label">User</label>
                     <select name="users_id" id="users_id" class="form-select">
                         <option value="">-pilih-</option>

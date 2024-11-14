@@ -13,7 +13,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Website Pemesanan Tiket</h5>
-                <a href="{{route('tiket_create')}}" class="btn btn-primary btn-sm">Tambah</a>
+                <a href="{{route('tiket_kategori_create')}}" class="btn btn-primary btn-sm">Tambah</a>
                 <div class="table-responsive">
                     <table class="table text-nowrap align-middle mb-0">
                         <thead>
@@ -21,8 +21,6 @@
                                 <th scope="col">No</th>
                                 <th scope="col">konser</th>
                                 <th scope="col">kategori</th>
-                                <th scope="col" >harga</th>
-                                <th scope="col" class="text-center">jumlah</th>
                                 <th scope="col" class="text-center">actions</th>
                             </tr>
                         </thead>
@@ -32,11 +30,9 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{$KategoriTiket->Konser->nama_konser}}</td>
                                 <td>{{$KategoriTiket->nama_kategori}}</td>
-                                <td>{{$KategoriTiket->harga_tiket}}</td>
-                                <td>{{$KategoriTiket->jumlah_tiket}}</td>
-                                <td>
-                                    <a href="{{ route('tiket_edit', $KategoriTiket->id_kategori_tiket) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    <a href="{{ route('tiket_delete', $KategoriTiket->id_kategori_tiket) }}" onclick="return confirm('Yakin ingin hapus data?')" class="btn btn-danger btn-sm">Delete</a>
+                                <td class="text-center">
+                                    <a href="{{ route('tiket_kategori_edit', $KategoriTiket->id_kategori_tiket) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="{{ route('tiket_kategorit_delete', $KategoriTiket->id_kategori_tiket) }}" onclick="return confirm('Yakin ingin hapus data?')" class="btn btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
                             @endforeach

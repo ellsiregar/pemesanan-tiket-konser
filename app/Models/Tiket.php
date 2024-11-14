@@ -10,20 +10,15 @@ class Tiket extends Model
     protected $primaryKey = 'id_tiket';
 
     protected $fillable =[
-        'order_id',
-        'users_id',
         'id_kategori_tiket',
         'quantity',
+        'harga_tiket',
         'status',
 
 
     ];
 
-    public function User(){
-        return $this->belongsTo(User::class, 'users_id', 'users_id');
-    }
-
     public function KategoriTiket(){
-        return $this->belongsTo(User::class, 'id_kategori_tiket', 'id_kategori_tiket');
+        return $this->belongsTo(KategoriTiket::class, 'id_kategori_tiket', 'id_kategori_tiket');
     }
 }

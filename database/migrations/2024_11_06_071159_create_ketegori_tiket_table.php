@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('kategori_tiket', function (Blueprint $table) {
             $table->integer('id_kategori_tiket')->primary()->autoIncrement();
+
             $table->integer('id_konser');
             $table->foreign('id_konser')
                 ->references('id_konser')
                 ->on('konser')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+                 
             $table->string('nama_kategori', 10);
-            $table->integer('harga_tiket');
-            $table->integer('jumlah_tiket');
             $table->timestamps();
         });
     }

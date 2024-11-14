@@ -34,11 +34,11 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/konser/delete/{id_konser}',[KonserController::class, "delete"])->name('konser_delete');
 
     Route::get('/admin/tiket_kategori',[KategoriTiketController::class, "tiket_kategori"])->name('admin.tiket_kategori');
-    Route::get('/tiket_kategori/create',[KategoriTiketController::class, "create"])->name('tiket_create');
-    Route::post('/tiket_kategori/store',[KategoriTiketController::class, "store"])->name('tiket_store');
-    Route::get('/tiket/edit/{id_kategori_tiket}', [KategoriTiketController::class, 'edit'])->name('tiket_edit');
-    Route::put('/tiket/edit/{id_kategori_tiket}', [KategoriTiketController::class, 'update'])->name('tiket_update');
-    Route::get('/tiket/delete/{id_kategori_tiket}',[KategoriTiketController::class, "delete"])->name('tiket_delete');
+    Route::get('/tiket_kategori/create',[KategoriTiketController::class, "create"])->name('tiket_kategori_create');
+    Route::post('/tiket_kategori/store',[KategoriTiketController::class, "store"])->name('tiket_kategori_store');
+    Route::get('/tiket/edit/{id_kategori_tiket}', [KategoriTiketController::class, 'edit'])->name('tiket_kategori_edit');
+    Route::put('/tiket/edit/{id_kategori_tiket}', [KategoriTiketController::class, 'update'])->name('tiket_kategori_update');
+    Route::get('/tiket/delete/{id_kategori_tiket}',[KategoriTiketController::class, "delete"])->name('tiket_kategorit_delete');
 
     Route::get('/admin/tiket',[TiketController::class,"tiket"])->name('tiket');
     Route::get('/admin/tiket/create',[TiketController::class, "create"])->name('tiket_create');
@@ -50,5 +50,4 @@ Route::middleware(['role:admin'])->group(function () {
 });
 
 Route::middleware(['role:user'])->group (function(){
-    route::get('/user/dashboard', [UserController::class, "dashboard"])->name('user.dashboard');
 });

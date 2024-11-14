@@ -13,14 +13,6 @@ return new class extends Migration
     {
         Schema::create('tiket', function (Blueprint $table) {
             $table->integer('id_tiket')->primary()->autoIncrement();
-            $table->string('order_id')->unique();
-
-            $table->integer('users_id');
-            $table->foreign('users_id')
-                ->references('users_id')
-                ->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
 
             $table->integer('id_kategori_tiket');
             $table->foreign('id_kategori_tiket')
@@ -30,7 +22,7 @@ return new class extends Migration
                 ->onUpdate('cascade');
 
             $table->integer('quantity');
-            $table->enum('status', ['booked', 'paid', 'cancelled']);
+            $table->integer('harga_tiket');
             $table->timestamps();
 
         });

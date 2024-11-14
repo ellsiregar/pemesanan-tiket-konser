@@ -8,7 +8,7 @@
     <div class="col-12">
         <div class="bg-light rounded h-100 p-4">
             <h6 class="mb-4">Tambah Kategori Tiket</h6>
-            <form action="{{ route('tiket_store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('tiket_kategori_store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="id_konser" class="form-label">KONSER</label>
@@ -29,24 +29,6 @@
                     <input type="text" class="form-control" id="nama_kategori" name="nama_kategori">
                     <div class="text-danger">
                         @error('nama_kategori')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="harga_tiket" class="form-label">HARGA</label>
-                    <input type="number" class="form-control" id="harga_tiket" name="harga_tiket">
-                    <div class="text-danger">
-                        @error('harga_tiket')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="jumlah_tiket" class="form-label">JUMLAH</label>
-                    <input type="number" class="form-control" id="jumlah_tiket" name="jumlah_tiket">
-                    <div class="text-danger">
-                        @error('jumlah_tiket')
                             {{ $message }}
                         @enderror
                     </div>

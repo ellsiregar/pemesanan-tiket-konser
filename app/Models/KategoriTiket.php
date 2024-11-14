@@ -12,8 +12,6 @@ class KategoriTiket extends Model
     protected $fillable = [
         'id_konser',
         'nama_kategori',
-        'harga_tiket',
-        'jumlah_tiket',
     ];
 
     public function Konser(){

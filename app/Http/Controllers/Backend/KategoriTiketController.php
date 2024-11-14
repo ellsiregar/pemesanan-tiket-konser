@@ -28,15 +28,11 @@ class KategoriTiketController extends Controller
         $request->validate([
             'id_konser' => 'required',
             'nama_kategori' => 'required',
-            'harga_tiket' => 'required',
-            'jumlah_tiket' => 'required',
         ]);
 
         KategoriTiket::create([
             'id_konser' => $request->id_konser,
             'nama_kategori' => $request->nama_kategori,
-            'harga_tiket' => $request->harga_tiket,
-            'jumlah_tiket' => $request->jumlah_tiket,
         ]);
         return redirect()->route('admin.tiket_kategori')->with('success', 'Kategori tiket berhasil ditambahkan!');
 
@@ -60,15 +56,11 @@ class KategoriTiketController extends Controller
         $request->validate([
             'id_konser' => 'required',
             'nama_kategori' => 'required',
-            'harga_tiket' => 'required',
-            'jumlah_tiket' => 'required',
         ]);
 
         $KategoriTiket->update([
             'id_konser' => $request->id_konser,
             'nama_kategori' => $request->nama_kategori,
-            'harga_tiket' => $request->harga_tiket,
-            'jumlah_tiket' => $request->jumlah_tiket,
         ]);
 
         return redirect()->route('admin.tiket_kategori')->with('success', "Data tiket Berhasil di Edit");

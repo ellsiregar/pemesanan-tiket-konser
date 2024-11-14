@@ -13,7 +13,7 @@ class Diskon extends Model
     protected $primaryKey = 'id_diskon';
 
     protected$fillable = [
-        'order_id',
+        'id_tiket',
         'diskon_kode',
         'presentase_diskon',
         'tanggal_kadaluarsa',
