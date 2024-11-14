@@ -18,6 +18,7 @@
                     <table class="table text-nowrap align-middle mb-0">
                         <thead>
                             <tr class="border-2 border-bottom border-primary border-0">
+                                <th scope="col">No</th>
                                 <th scope="col">konser</th>
                                 <th scope="col">kategori</th>
                                 <th scope="col" >harga</th>

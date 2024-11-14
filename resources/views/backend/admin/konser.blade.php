@@ -18,6 +18,7 @@
                     <table class="table text-nowrap align-middle mb-0">
                         <thead>
                             <tr class="border-2 border-bottom border-primary border-0">
+                                <th scope="col">no</th>
                                 <th scope="col">nama konser</th>
                                 <th scope="col" >artis/band</th>
                                 <th scope="col" class="text-center">lokasi</th>
@@ -32,6 +33,7 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{$konser->nama_konser}}</td>
+                                <td>{{$konser->nama_artis_band}}</td>
                                 <td>{{$konser->lokasi}}</td>
                                 <td>{{$konser->tanggal_konser}}</td>
                                 <td>{{$konser->waktu_konser}}</td>
