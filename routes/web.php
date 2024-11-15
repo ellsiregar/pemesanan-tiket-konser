@@ -43,9 +43,9 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/tiket',[TiketController::class,"tiket"])->name('tiket');
     Route::get('/admin/tiket/create',[TiketController::class, "create"])->name('tiket_create');
     Route::post('/admin/tiket/store',[TiketController::class, "store"])->name('tiket_store');
-    Route::get('/admin/tiket/edit/{}', [TiketController::class, 'edit'])->name('tiket_edit');
-    Route::put('/admin/tiket/edit/{}', [TiketController::class, 'update'])->name('tiket_update');
-    Route::get('/admin/tiket/delete/{}',[KonserController::class, "delete"])->name('tiket_delete');
+    Route::get('/admin/tiket/edit/{id_tiket}', [TiketController::class, 'edit'])->name('tiket_edit');
+    Route::put('/admin/tiket/edit/{id_tiket}', [TiketController::class, 'update'])->name('tiket_update');
+    Route::get('/admin/tiket/delete/{id_tiket}',[TiketController::class, "delete"])->name('tiket_delete');
 
 });
 

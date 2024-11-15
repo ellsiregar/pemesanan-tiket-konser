@@ -13,9 +13,6 @@ class Tiket extends Model
         'id_kategori_tiket',
         'quantity',
         'harga_tiket',
-        'status',
-
-
     ];
 
     public function KategoriTiket(){
