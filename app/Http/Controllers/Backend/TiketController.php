@@ -36,6 +36,7 @@ class TiketController extends Controller
     }
 
     public function edit() {}
+    
 
     public function update() {}
 
