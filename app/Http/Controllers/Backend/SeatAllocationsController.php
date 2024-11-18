@@ -9,44 +9,55 @@ use Illuminate\Http\Request;
 
 class SeatAllocationsController extends Controller
 {
-    public function seat(){
+    public function seat($id_tiket){
+        $Tiket = Tiket::find($id_tiket);
+        if(!$Tiket) {
+            return back();
+        }
+        $SeatAllocations = SeatAllocations::where('id_tiket', $Tiket->id_tiket)->get();
 
-        $SeatAllocations = SeatAllocations::with('tiket.kategoriTiket')->get();
-
-        return view('backend.admin.seat_allocations', compact('SeatAllocations'));
+        return view('backend.admin.seat_allocations', compact('SeatAllocations', 'id_tiket'));
     }
 
-    public function create(){
+    public function create($id_tiket){
+        $Tiket = Tiket::find($id_tiket);
+        if(!$Tiket) {
+            return back();
+        }
         $tikets = Tiket::all();
         $SeatAllocations = SeatAllocations::with('tiket.kategoriTiket')->get();
 
-        return view('backend.admin.tambah_SeatAllocations', compact('tikets','SeatAllocations'));
+        return view('backend.admin.tambah_SeatAllocations', compact('tikets','SeatAllocations', 'id_tiket'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request, $id_tiket){
 
         $request->validate([
-            'id_tiket' => 'required',
+
             'nomor_tempat_duduk' => 'required',
         ]);
 
         SeatAllocations::create([
-            'id_tiket' => $request->id_tiket,
+            'id_tiket' => $id_tiket,
             'nomor_tempat_duduk' => $request->nomor_tempat_duduk,
         ]);
-        return redirect()->route('seat')->with('success', 'Seat Allocations berhasil ditambahkan!');
+        return redirect()->route('seat', 'id_tiket')->with('success', 'Seat Allocations berhasil ditambahkan!');
     }
 
-    public function delete($id_lokasi){
-        $SeatAllocations = SeatAllocations::find($id_lokasi);
-        $SeatAllocations->delete();
+   public function delete($id_tiket, $id_lokasi)
+{
+    // Temukan data berdasarkan id_lokasi
+    $SeatAllocation = SeatAllocations::find($id_lokasi);
 
-    if (!$SeatAllocations) {
-        return redirect()->back()->with('error', 'Data tiket tidak ditemukan.');
+    // Jika data tidak ditemukan, kembalikan dengan pesan error
+    if (!$SeatAllocation) {
+        return redirect()->route('seat', $id_tiket)->with('error', 'Data tempat duduk tidak ditemukan.');
     }
 
-    $SeatAllocations->delete();
+    // Hapus data
+    $SeatAllocation->delete();
 
-    return redirect()->back()->with('success', 'Data tempat duduk berhasil dihapus.');
-    }
+    // Redirect kembali ke halaman seat dengan pesan sukses
+    return redirect()->route('seat', $id_tiket)->with('success', 'Data tempat duduk berhasil dihapus.');
+}
 }

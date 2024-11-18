@@ -13,7 +13,7 @@
                 <div class="mb-3">
                     <label for="id_kategori_tiket" class="form-label">Kategori Tiket</label>
                     <select name="id_kategori_tiket" id="id_kategori_tiket" class="form-select">
-                        <option value="">-pilih-</option>
+                        <option value="{{old('id_kategori_tiket')}}">-pilih-</option>
                         @foreach ($KategoriTikets as $KategoriTiket)
                             <option value="{{ $KategoriTiket->id_kategori_tiket }}">
                               {{$KategoriTiket->Konser->nama_konser}} - {{$KategoriTiket->nama_kategori}}

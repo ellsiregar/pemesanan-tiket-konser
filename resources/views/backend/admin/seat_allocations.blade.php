@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Website Pemesanan Tiket</h5>
-                <a href="{{ route('seat_create') }}" class="btn btn-primary btn-sm">Tambah</a>
+                <a href="{{ route('seat_create', $id_tiket) }}" class="btn btn-primary btn-sm">Tambah</a>
                 <div class="table-responsive">
                     <table class="table text-nowrap align-middle mb-0">
                         <thead>
@@ -27,11 +27,11 @@
                             @foreach ($SeatAllocations as $SeatAllocation)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $SeatAllocation->tiket->kategoriTiket->nama_kategori ?? 'Tidak ada kategori' }}</td>
+                                <td>{{ $SeatAllocation->tiket->kategoriTiket->nama_kategori ?? 'Tidak ada kategori' }}-{{ $SeatAllocation->tiket->KategoriTiket->konser->nama_konser}}</td>
                                 <td>{{ $SeatAllocation->nomor_tempat_duduk }}</td>
                                 <td class="text-center">
                                     <a href="" class="btn btn-warning btn-sm">Edit</a>
-                                    <a href="{{route('seat_delete', $SeatAllocation->id_lokasi)}}" onclick="return confirm('Yakin ingin hapus data?')" class="btn btn-danger btn-sm">Delete</a>
+                                    <a href="{{ route('seat_delete', ['id_tiket' => $id_tiket, 'id_lokasi' => $SeatAllocation->id_lokasi]) }}" onclick="return confirm('Yakin ingin hapus data?')" class="btn btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
                             @endforeach

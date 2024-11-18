@@ -64,14 +64,7 @@
                   <span class="hide-menu">Tiket</span>
                 </a>
               </li>
-              <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('seat')}}" aria-expanded="false">
-                  <span>
-                    <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
-                  </span>
-                  <span class="hide-menu">Tempat Duduk</span>
-                </a>
-              </li>
+             
           </ul>
           <div class="unlimited-access hide-menu bg-primary-subtle position-relative mb-7 mt-7 rounded-3">
             <div class="d-flex">

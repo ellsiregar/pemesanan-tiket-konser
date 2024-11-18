@@ -22,4 +22,5 @@ class Konser extends Model
         return $this->hasMany(KategoriTiket::class, 'id_konser', 'id_konser');
     }
 
+   
 }
