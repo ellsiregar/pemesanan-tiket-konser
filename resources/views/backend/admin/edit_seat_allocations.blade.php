@@ -8,20 +8,9 @@
     <div class="col-12">
         <div class="bg-light rounded h-100 p-4">
             <h6 class="mb-4">Edit Pengalokasian Tempat Duduk</h6>
-            <form action="" method="POST">
+            <form action="{{ route('seat_update', ['id_tiket' => $id_tiket, 'id_lokasi' => $id_lokasi])}}" method="POST">
                 @csrf
                 @method('PUT')
-
-                <div class="mb-3">
-                    <label for="order_id" class="form-label">Order ID</label>
-                    <input type="text" class="form-control" id="order_id" name="order_id" value="{{ old('order_id', $SeatAllocation->order_id) }}">
-                    <div class="text-danger">
-                        @error('order_id')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
-
                 <div class="mb-3">
                     <label for="nomor_tempat_duduk" class="form-label">Nomor Tempat Duduk</label>
                     <input type="text" class="form-control" id="nomor_tempat_duduk" name="nomor_tempat_duduk" value="{{ old('nomor_tempat_duduk', $SeatAllocation->nomor_tempat_duduk) }}">
