@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 class TiketController extends Controller
 {
     public function tiket() {
+        $KategoriTikets = KategoriTiket::all();
         $tikets = Tiket::all();
         return view('backend.admin.tiket', compact('tikets'));
     }

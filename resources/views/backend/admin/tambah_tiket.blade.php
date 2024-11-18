@@ -15,7 +15,9 @@
                     <select name="id_kategori_tiket" id="id_kategori_tiket" class="form-select">
                         <option value="">-pilih-</option>
                         @foreach ($KategoriTikets as $KategoriTiket)
-                            <option value="{{ $KategoriTiket->id_kategori_tiket }}">{{ $KategoriTiket->nama_kategori }}</option>
+                            <option value="{{ $KategoriTiket->id_kategori_tiket }}">
+                              {{$KategoriTiket->Konser->nama_konser}} - {{$KategoriTiket->nama_kategori}}
+                            </option>
                         @endforeach
                     </select>
                     <div class="text-danger">

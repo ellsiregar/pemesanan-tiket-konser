@@ -21,4 +21,9 @@ class KategoriTiket extends Model
     public function Tiket(){
         return $this->hasMany(Tiket::class, 'id_tiket', 'id_tiket');
     }
+
+    public function SeatAllocations(){
+        return $this->hasMany(SeatAllocations::class, 'id_lokasi', '	id_lokasi');
+    }
+   
 }

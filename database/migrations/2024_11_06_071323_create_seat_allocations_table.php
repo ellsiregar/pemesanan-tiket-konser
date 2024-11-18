@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('seat_allocations', function (Blueprint $table) {
             $table->integer('id_lokasi')->primary()->autoIncrement();
-            $table->string('order_id', 150);
+
+            $table->integer('id_tiket');
+            $table->foreign('id_tiket')
+                ->references('id_tiket')
+                ->on('tiket')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+                
             $table->integer('nomor_tempat_duduk');
             $table->timestamps();
         });
