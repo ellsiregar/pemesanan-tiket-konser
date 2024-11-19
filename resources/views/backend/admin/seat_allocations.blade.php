@@ -30,7 +30,7 @@
                                 <td>{{ $SeatAllocation->tiket->kategoriTiket->nama_kategori ?? 'Tidak ada kategori' }}-{{ $SeatAllocation->tiket->KategoriTiket->konser->nama_konser}}</td>
                                 <td>{{ $SeatAllocation->nomor_tempat_duduk }}</td>
                                 <td class="text-center">
-                                    <a href="" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="{{ route('seat_edit', ['id_tiket' => $id_tiket, 'id_lokasi' => $SeatAllocation->id_lokasi]) }}" class="btn btn-warning btn-sm">Edit Seat</a>
                                     <a href="{{ route('seat_delete', ['id_tiket' => $id_tiket, 'id_lokasi' => $SeatAllocation->id_lokasi]) }}" onclick="return confirm('Yakin ingin hapus data?')" class="btn btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>

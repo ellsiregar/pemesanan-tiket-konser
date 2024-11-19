@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\SeatAllocationsController;
 use App\Http\Controllers\Backend\TiketController;
 use App\Http\Controllers\User\UserController;
 use App\Models\KategoriTiket;
+use App\Models\SeatAllocations;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -51,7 +52,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/tiket/{id_tiket}/seat',[SeatAllocationsController::class,"seat"])->name('seat');
     Route::get('/admin/tiket/{id_tiket}/seat/create',[SeatAllocationsController::class,"create"])->name('seat_create');
     Route::post('/admin/tiket/{id_tiket}/seat/store',[SeatAllocationsController::class,"store"])->name('seat_store');
-    Route::get('/admin/tiket/{id_tiket}/seat/edit{id_lokasi}',[SeatAllocationsController::class,"edit"])->name('seat_edit');
+    Route::get('/admin/tiket/{id_tiket}/seat/edit/{id_lokasi}', [SeatAllocationsController::class, "edit"])->name('seat_edit');
     Route::put('/admin/tiket/{id_tiket}/seat/edit{id_lokasi}',[SeatAllocationsController::class,"update"])->name('seat_update');
     Route::get('/admin/tiket/{id_tiket}/seat/delete/{id_lokasi}',[SeatAllocationsController::class,"delete"])->name('seat_delete');
 
