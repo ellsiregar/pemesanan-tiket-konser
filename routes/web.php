@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Auth\UserLoginController;
+use App\Http\Controllers\Backend\DiskonController;
 use App\Http\Controllers\Backend\KategoriTiketController;
 use App\Http\Controllers\Backend\KonserController;
 use App\Http\Controllers\Backend\SeatAllocationsController;
@@ -56,6 +57,12 @@ Route::middleware(['role:admin'])->group(function () {
     Route::put('/admin/tiket/{id_tiket}/seat/edit{id_lokasi}',[SeatAllocationsController::class,"update"])->name('seat_update');
     Route::get('/admin/tiket/{id_tiket}/seat/delete/{id_lokasi}',[SeatAllocationsController::class,"delete"])->name('seat_delete');
 
+    Route::get('/admin/diskon',[DiskonController::class,"diskon"])->name('diskon');
+    Route::get('/admin/diskon/create',[DiskonController::class,"create"])->name('diskon_create');
+    Route::post('/admin/diskon/store',[DiskonController::class,"store"])->name('diskon_store');
+    Route::get('/admin/diskon/edit/{id_diskon}', [DiskonController::class, "edit"])->name('diskon_edit');
+    Route::put('/admin/diskon/edit{id_diskon}',[DiskonController::class,"update"])->name('diskon_update');
+    Route::get('/admin/diskon/delete/{id_diskon}',[DiskonController::class,"delete"])->name('diskon_delete');
 
 });
 

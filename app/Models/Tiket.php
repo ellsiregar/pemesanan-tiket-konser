@@ -22,5 +22,10 @@ class Tiket extends Model
     public function SeatAllocations(){
         return $this->hasMany(SeatAllocations::class, 'id_lokasi', '	id_lokasi');
     }
+
+    public function diskon()
+    {
+        return $this->hasMany(Diskon::class, 'id_tiket', 'id_tiket');
+    }
 }
 

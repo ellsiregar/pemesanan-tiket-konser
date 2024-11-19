@@ -9,13 +9,19 @@ class Diskon extends Model
 {
     use HasFactory;
 
-    protected$table ='diskon';
+    protected $table = 'diskon';
     protected $primaryKey = 'id_diskon';
 
-    protected$fillable = [
+    protected $fillable = [
         'id_tiket',
         'diskon_kode',
-        'presentase_diskon',
+        'persentase_diskon',
         'tanggal_kadaluarsa',
     ];
+
+    public function tiket()
+    {
+        return $this->belongsTo(Tiket::class, 'id_tiket', 'id_tiket');
+    }
+
 }

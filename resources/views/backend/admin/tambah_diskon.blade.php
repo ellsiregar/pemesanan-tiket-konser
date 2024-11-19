@@ -8,23 +8,39 @@
     <div class="col-12">
         <div class="bg-light rounded h-100 p-4">
             <h6 class="mb-4">Tambah Diskon</h6>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{route('diskon_store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
-                    <label for="id_tiket" class="form-label">ID Tiket</label>
-                    <input type="number" class="form-control" id="id_tiket" name="id_tiket" required>
+                    <label for="id_tiket" class="form-label">KONSER</label>
+                    <select name="id_tiket" id="id_tiket" class="form-select">
+                        <option value="">-pilih-</option>
+                        @foreach ($tikets as $tiket)
+                            <option value="{{ $tiket->id_tiket }}">{{ $tiket->KategoriTiket->nama_kategori}}-{{ $tiket->KategoriTiket->konser->nama_konser}}</option>
+                        @endforeach
+                    </select>
+                    <div class="text-danger">
+                        @error('id_tiket')
+                            {{ $message }}
+                        @enderror
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label for="diskon_kode" class="form-label">Kode Diskon</label>
-                    <input type="text" class="form-control" id="diskon_kode" name="diskon_kode" required>
-                </div>
-                <div class="mb-3">
-                    <label for="presentase_diskon" class="form-label">Presentase Diskon (%)</label>
-                    <input type="number" class="form-control" id="presentase_diskon" name="presentase_diskon" required>
+                    <label for="persentase_diskon" class="form-label">Presentase Diskon (%)</label>
+                    <input type="text" class="form-control" id="persentase_diskon" name="persentase_diskon" required>
+                    <div class="text-danger">
+                        @error('id_tiket')
+                            {{ $message }}
+                        @enderror
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="tanggal_kadaluarsa" class="form-label">Tanggal Kadaluarsa</label>
                     <input type="date" class="form-control" id="tanggal_kadaluarsa" name="tanggal_kadaluarsa" required>
+                    <div class="text-danger">
+                        @error('id_tiket')
+                            {{ $message }}
+                        @enderror
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Tambah Diskon</button>
             </form>
