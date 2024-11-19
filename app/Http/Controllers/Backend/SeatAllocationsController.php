@@ -41,7 +41,7 @@ class SeatAllocationsController extends Controller
             'id_tiket' => $id_tiket,
             'nomor_tempat_duduk' => $request->nomor_tempat_duduk,
         ]);
-        return redirect()->route('seat', 'id_tiket')->with('success', 'Seat Allocations berhasil ditambahkan!');
+        return redirect()->route('seat',  ['id_tiket' => $id_tiket])->with('success', 'Seat Allocations berhasil ditambahkan!');
     }
 
    public function delete($id_tiket, $id_lokasi)
