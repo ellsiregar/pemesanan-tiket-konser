@@ -16,4 +16,14 @@ class Transaksi extends Model
         'transaksi_date',
         'amount',
     ];
+
+    public function tiket()
+    {
+        return $this->belongsTo(Tiket::class, 'id_tiket', 'id_tiket');
+    }
+
+    public function seatAllocations()
+{
+    return $this->hasMany(SeatAllocations::class, 'id_transaksi', 'id_transaksi');
+}
 }

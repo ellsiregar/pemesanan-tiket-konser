@@ -72,11 +72,22 @@
                   <span class="hide-menu">Diskon</span>
                 </a>
             </li>
-          </ul>
-          <div class="unlimited-access hide-menu bg-primary-subtle position-relative mb-7 mt-7 rounded-3">
-            <div class="d-flex">
-            </div>
-          </div>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('tiket_diskon')}}" aria-expanded="false">
+                  <span>
+                    <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
+                  </span>
+                  <span class="hide-menu"> Tiket Diskon</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('transaksi')}}" aria-expanded="false">
+                  <span>
+                    <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
+                  </span>
+                  <span class="hide-menu">Transaksi</span>
+                </a>
+            </li>
         </nav>
         <!-- End Sidebar navigation -->
       </div>

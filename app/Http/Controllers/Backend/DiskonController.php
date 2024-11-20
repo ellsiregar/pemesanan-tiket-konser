@@ -25,13 +25,11 @@ class DiskonController extends Controller
     {
 
         $request->validate([
-            'id_tiket' => 'required|integer',
             'persentase_diskon' => 'required|max:10',
             'tanggal_kadaluarsa' => 'required|date',
         ]);
 
         Diskon::create([
-            'id_tiket' => $request->id_tiket,
             'diskon_kode' => 'DSK-' . strtoupper(uniqid()), // Auto generate
             'persentase_diskon' => $request->persentase_diskon,
             'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa,
@@ -51,13 +49,11 @@ class DiskonController extends Controller
         $Diskon = Diskon::find($id);
 
         $request->validate([
-            'id_tiket' => 'required|integer',
             'persentase_diskon' => 'required|max:10',
             'tanggal_kadaluarsa' => 'required|date',
         ]);
 
         $Diskon->update([
-            'id_tiket' => $request->id_tiket,
             'diskon_kode' => 'DSK-' . strtoupper(uniqid()), // Auto generate
             'persentase_diskon' => $request->persentase_diskon,
             'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa,

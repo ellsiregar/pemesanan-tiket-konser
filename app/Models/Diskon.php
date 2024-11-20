@@ -23,5 +23,9 @@ class Diskon extends Model
     {
         return $this->belongsTo(Tiket::class, 'id_tiket', 'id_tiket');
     }
+    public function tiketDiskon()
+    {
+        return $this->hasMany(TiketDiskon::class, 'id_diskon', 'id_diskon');
+    }
 
 }

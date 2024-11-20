@@ -22,5 +22,8 @@ class Konser extends Model
         return $this->hasMany(KategoriTiket::class, 'id_konser', 'id_konser');
     }
 
-   
+    public function reviews()
+    {
+        return $this->hasMany(Reviews::class, 'id_konser', 'id_konser');
+    }
 }

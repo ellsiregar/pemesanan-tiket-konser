@@ -15,4 +15,13 @@ class TiketDiskon extends Model
         'id_diskon',
         'appliad_date',
     ];
+    public function tiket()
+    {
+        return $this->belongsTo(Tiket::class, 'id_tiket', 'id_tiket');
+    }
+
+    public function diskon()
+    {
+        return $this->belongsTo(Diskon::class, 'id_diskon', 'id_diskon');
+    }
 }

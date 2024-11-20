@@ -5,8 +5,11 @@ use App\Http\Controllers\Auth\UserLoginController;
 use App\Http\Controllers\Backend\DiskonController;
 use App\Http\Controllers\Backend\KategoriTiketController;
 use App\Http\Controllers\Backend\KonserController;
+use App\Http\Controllers\Backend\ReviewsController;
 use App\Http\Controllers\Backend\SeatAllocationsController;
 use App\Http\Controllers\Backend\TiketController;
+use App\Http\Controllers\Backend\TiketDiskonController;
+use App\Http\Controllers\Backend\TransaksiController;
 use App\Http\Controllers\User\UserController;
 use App\Models\KategoriTiket;
 use App\Models\SeatAllocations;
@@ -64,6 +67,16 @@ Route::middleware(['role:admin'])->group(function () {
     Route::put('/admin/diskon/edit{id_diskon}',[DiskonController::class,"update"])->name('diskon_update');
     Route::get('/admin/diskon/delete/{id_diskon}',[DiskonController::class,"delete"])->name('diskon_delete');
 
+    Route::get('/admin/tiket_diskon',[TiketDiskonController::class,"tiket_diskon"])->name('tiket_diskon');
+    Route::get('/admin/tiket_diskon/create',[TiketDiskonController::class,"create"])->name('tiket_diskon_create');
+    Route::post('/admin/tiket_diskon/store',[TiketDiskonController::class,"store"])->name('tiket_diskon_store');
+    Route::get('/admin/tiket_diskon/edit/{id_diskon}', [TiketDiskonController::class, "edit"])->name('tiket_diskon_edit');
+    Route::put('/admin/tiket_diskon/edit{id_diskon}',[TiketDiskonController::class,"update"])->name('tiket_diskon_update');
+    Route::get('/admin/tiket_diskon/delete/{id_diskon}',[TiketDiskonController::class,"delete"])->name('tiket_diskon_delete');
+
+    Route::get('/admin/transaksi',[TransaksiController::class,"transaksi"])->name('transaksi');
+
+    Route::get('/admin/review',[ReviewsController::class,"review"])->name('review');
 });
 
 Route::middleware(['role:user'])->group (function(){

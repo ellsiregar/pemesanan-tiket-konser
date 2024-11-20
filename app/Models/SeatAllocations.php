@@ -22,4 +22,9 @@ class SeatAllocations extends Model
     {
         return $this->belongsTo(Tiket::class, 'id_tiket', 'id_tiket');
     }
+
+    public function transaksi()
+{
+    return $this->belongsTo(Transaksi::class, 'id_transaksi', 'id_transaksi');
+}
 }

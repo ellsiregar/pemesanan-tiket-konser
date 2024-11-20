@@ -18,14 +18,19 @@ class Tiket extends Model
     public function KategoriTiket(){
         return $this->belongsTo(KategoriTiket::class, 'id_kategori_tiket', 'id_kategori_tiket');
     }
-
+    
     public function SeatAllocations(){
         return $this->hasMany(SeatAllocations::class, 'id_lokasi', '	id_lokasi');
     }
 
-    public function diskon()
+    public function tiketDiskon()
     {
-        return $this->hasMany(Diskon::class, 'id_tiket', 'id_tiket');
+        return $this->hasMany(TiketDiskon::class, 'id_tiket', 'id_tiket');
+    }
+
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class, 'id_tiket', 'id_tiket');
     }
 }
 
