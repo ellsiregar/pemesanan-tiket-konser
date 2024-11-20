@@ -1,0 +1,30 @@
+//
+// _sidenav.scss
+//
+
+
+aside+.page-content {
+    @apply lg:ms-sidenav;
+}
+
+
+// Menu Active
+.admin-menu {
+
+
+    a.active {
+        @apply text-white bg-white/5;
+    }
+
+
+
+    .menu-arrow {
+        @apply i-tabler-plus ms-auto text-sm transition-all;
+    }
+
+    .hs-accordion.active {
+        .menu-arrow {
+            @apply i-tabler-minus;
+        }
+    }
+}
