@@ -19,6 +19,6 @@ class User
         if(Auth::check() && Auth::user()->role === $role){
             return $next($request);
         }
-        return redirect()->route($role.'.UserLogin')->withErrors(['login_error' => 'silahkan login untuk melanjutkan']);
+        return redirect()->route($role.'.login')->withErrors(['login_error' => 'silahkan login untuk melanjutkan']);
     }
 }

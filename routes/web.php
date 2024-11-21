@@ -7,7 +7,7 @@ use App\Http\Controllers\Backend\KategoriTiketController;
 use App\Http\Controllers\Backend\KonserController;
 use App\Http\Controllers\Backend\SeatAllocationsController;
 use App\Http\Controllers\Backend\TiketController;
-use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Frontend\UserController as FrontendUserController;
 use App\Models\KategoriTiket;
 use App\Models\SeatAllocations;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +20,7 @@ Route::middleware(['guest:admin', 'guest:user'])->group(function() {
     route::get('/admin/login', [UserLoginController::class, "login"])->name('admin.UserLogin');
     route::post('/admin/submit', [UserLoginController::class, "submit"])->name('admin.UserSubmit');
 
-    
+
     Route::get('/user/login', [UserLoginController::class, 'login'])->name('user.login');
     Route::post('/user/submit', [UserLoginController::class, 'submit'])->name('user.submit');
 });
@@ -70,5 +70,6 @@ Route::middleware(['role:admin'])->group(function () {
 
 });
 
-Route::middleware(['role:user'])->group (function(){
-});
+// Route::middleware(['role:user'])->group (function(){
+    Route::get('/user/dashboard', [FrontendUserController::class, 'dashboard'])->name('user.dashboard');
+// });
