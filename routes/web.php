@@ -5,14 +5,18 @@ use App\Http\Controllers\Auth\UserLoginController;
 use App\Http\Controllers\Backend\DiskonController;
 use App\Http\Controllers\Backend\KategoriTiketController;
 use App\Http\Controllers\Backend\KonserController;
+use App\Http\Controllers\Backend\ReviewsController;
 use App\Http\Controllers\Backend\SeatAllocationsController;
 use App\Http\Controllers\Backend\TiketController;
-use App\Http\Controllers\Frontend\UserController as FrontendUserController;
+use App\Http\Controllers\Backend\TiketDiskonController;
+use App\Http\Controllers\Backend\TransaksiController;
+use App\Http\Controllers\User\UserController;
 use App\Models\KategoriTiket;
 use App\Models\SeatAllocations;
+use App\Models\TiketDiskon;
 use Illuminate\Support\Facades\Route;
 
-Route::get('#', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -20,11 +24,11 @@ Route::middleware(['guest:admin', 'guest:user'])->group(function() {
     route::get('/admin/login', [UserLoginController::class, "login"])->name('admin.UserLogin');
     route::post('/admin/submit', [UserLoginController::class, "submit"])->name('admin.UserSubmit');
 
-    Route::get('/', [UserLoginController::class, 'loginUser'])->name('user.login');
+
+    Route::get('/user/login', [UserLoginController::class, 'login'])->name('user.login');
     Route::post('/user/submit', [UserLoginController::class, 'submit'])->name('user.submit');
-    Route::get('/user/register', [UserLoginController::class, 'Register'])->name('user.register');
-    Route::post('/user/register/submit', [UserLoginController::class, 'RegisterSubmit'])->name('user.register.submit');
 });
+
 
 
 Route::middleware(['role:admin'])->group(function () {
@@ -68,8 +72,13 @@ Route::middleware(['role:admin'])->group(function () {
     Route::put('/admin/diskon/edit{id_diskon}',[DiskonController::class,"update"])->name('diskon_update');
     Route::get('/admin/diskon/delete/{id_diskon}',[DiskonController::class,"delete"])->name('diskon_delete');
 
+    Route::get('/admin/tiket_diskon',[TiketDiskonController::class,"tiket_diskon"])->name('TiketDiskon');
+
+    Route::get('/admin/transaksi',[TransaksiController::class,"transaksi"])->name('transaksi');
+
+    Route::get('/admin/review',[ReviewsController::class,"review"])->name('review');
+
 });
 
 Route::middleware(['role:user'])->group (function(){
-    Route::get('/user/dashboard', [FrontendUserController::class, 'dashboard'])->name('user.dashboard');
 });
