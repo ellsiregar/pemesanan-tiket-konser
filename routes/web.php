@@ -10,13 +10,14 @@ use App\Http\Controllers\Backend\SeatAllocationsController;
 use App\Http\Controllers\Backend\TiketController;
 use App\Http\Controllers\Backend\TiketDiskonController;
 use App\Http\Controllers\Backend\TransaksiController;
+use App\Http\Controllers\Frontend\UserController as FrontendUserController;
 use App\Http\Controllers\User\UserController;
 use App\Models\KategoriTiket;
 use App\Models\SeatAllocations;
 use App\Models\TiketDiskon;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('#', function () {
     return view('welcome');
 });
 
@@ -25,8 +26,11 @@ Route::middleware(['guest:admin', 'guest:user'])->group(function() {
     route::post('/admin/submit', [UserLoginController::class, "submit"])->name('admin.UserSubmit');
 
 
-    Route::get('/user/login', [UserLoginController::class, 'login'])->name('user.login');
+    Route::get('/', [UserLoginController::class, 'loginUser'])->name('user.login');
     Route::post('/user/submit', [UserLoginController::class, 'submit'])->name('user.submit');
+    Route::get('/user/register', [UserLoginController::class, 'register'])->name('user.register');
+    Route::post('/user/register', [UserLoginController::class, 'RegisterSubmit'])->name('user.register.submit');
+
 });
 
 
@@ -81,4 +85,5 @@ Route::middleware(['role:admin'])->group(function () {
 });
 
 Route::middleware(['role:user'])->group (function(){
+    Route::get('/user/dashboard',[FrontendUserController::class,"dashboard"])->name('user.dashboard');
 });

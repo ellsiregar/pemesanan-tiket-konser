@@ -19,7 +19,7 @@ class UserLoginController extends Controller
         return view('auth.UserLogin');
     }
 
-    public function Register()
+    public function register()
     {
         return view('auth.register');
     }
