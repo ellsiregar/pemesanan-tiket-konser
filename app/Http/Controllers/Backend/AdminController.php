@@ -15,8 +15,11 @@ class AdminController extends Controller
         return view('backend.admin.dashboard');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken()  ;
         return view('auth.AdminLogin');
     }
 
