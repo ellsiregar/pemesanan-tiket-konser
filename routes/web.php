@@ -25,7 +25,7 @@ Route::middleware(['guest:admin', 'guest:user'])->group(function() {
     Route::post('/user/submit', [UserLoginController::class, 'submit'])->name('user.submit');
 });
 
- 
+
 
 Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

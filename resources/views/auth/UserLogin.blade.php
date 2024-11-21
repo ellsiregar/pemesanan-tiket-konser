@@ -29,7 +29,7 @@
                                     <img src="../assets/images/logos/logo-light.svg" alt="">
                                 </a>
                                 <p class="text-center">Your Social Campaigns</p>
-                                <form action="{{ route('') }}" method="POST">
+                                <form action="{{ route('user.submit') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
@@ -37,16 +37,6 @@
                                             aria-describedby="emailHelp" placeholder="username" value="{{ old('username') }}">
                                         <div class="text-danger">
                                             @error('username')
-                                                {{ $message }}
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="text" class="form-control" name="email" id="email"
-                                            aria-describedby="emailHelp" placeholder="email" value="{{ old('email') }}">
-                                        <div class="text-danger">
-                                            @error('email')
                                                 {{ $message }}
                                             @enderror
                                         </div>
@@ -61,6 +51,10 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4">Sign in</button>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="fs-4 mb-0 fw-bold">don't have account ?</p>
+                                        <a class="text-primary fw-bold ms-2" href="{{route('user.register')}}">Create an account</a>
+                                      </div>
                                 </form>
                             </div>
                         </div>
