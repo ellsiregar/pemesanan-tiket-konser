@@ -73,7 +73,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('tiket_diskon')}}" aria-expanded="false">
+                <a class="sidebar-link" href="{{ route('TiketDiskon')}}" aria-expanded="false">
                   <span>
                     <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
                   </span>
@@ -86,6 +86,14 @@
                     <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
                   </span>
                   <span class="hide-menu">Transaksi</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('review')}}" aria-expanded="false">
+                  <span>
+                    <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
+                  </span>
+                  <span class="hide-menu">Review</span>
                 </a>
             </li>
         </nav>
