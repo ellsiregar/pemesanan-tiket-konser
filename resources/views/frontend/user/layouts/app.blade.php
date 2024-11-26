@@ -61,10 +61,9 @@
 
                 <div id="gallery-wrapper" class="flex justify-center" h>
                     <!-- Card 1 -->
-
                         <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item"
                             data-groups='["creative", "photography"]'>
-                            <a class="card image-popup relative overflow-hidden" href="{{ route('user.aboutTicket') }}">
+                            <a class="card image-popup relative overflow-hidden" href="{{ route('user.aboutTicket.card1') }}">
                                 <!-- Image -->
                                 <img src="{{ asset('assets_main/images/small/img-1.jpg') }}" alt="work-image"
                                     class="w-full h-auto">
@@ -93,8 +92,7 @@
 
                     <!-- Card 2 -->
                     <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["design", "illustration"]'>
-                        <a class="card image-popup relative overflow-hidden"
-                            href="{{ asset('assets_main/images/small/img-2.jpg') }}">
+                        <a class="card image-popup relative overflow-hidden" href="{{ route('user.aboutTicket.card2') }}">
                             <!-- Image -->
                             <img src="{{ asset('assets_main/images/small/img-2.jpg') }}" alt="work-image"
                                 class="w-full h-auto">
@@ -123,8 +121,7 @@
 
                     <!-- Card 3 -->
                     <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["photography", "travel"]'>
-                        <a class="card image-popup relative overflow-hidden"
-                            href="{{ asset('assets_main/images/small/img-3.jpg') }}">
+                        <a class="card image-popup relative overflow-hidden" href="{{ route('user.aboutTicket.card3') }}">
                             <!-- Image -->
                             <img src="{{ asset('assets_main/images/small/img-3.jpg') }}" alt="work-image"
                                 class="w-full h-auto">
@@ -154,7 +151,7 @@
                     <!-- Card 4 -->
                     <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["design", "branding"]'>
                         <a class="card image-popup relative overflow-hidden"
-                            href="{{ asset('assets_main/images/small/img-4.jpg') }}">
+                            href="{{ route('user.aboutTicket.card4') }}">
                             <!-- Image -->
                             <img src="{{ asset('assets_main/images/small/img-4.jpg') }}" alt="work-image"
                                 class="w-full h-auto">
@@ -183,7 +180,7 @@
 
                     <!-- Card 5 -->
                     <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["web", "development"]'>
-                        <a class="card image-popup relative overflow-hidden" href="assets/images/small/img-5.jpg">
+                        <a class="card image-popup relative overflow-hidden" href="{{ route('user.aboutTicket.card5') }}">
                             <!-- Image -->
                             <img src="{{ asset('assets_main/images/small/img-5.jpg') }}" alt="work-image"
                                 class="w-full h-auto">
@@ -214,7 +211,7 @@
                     <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item"
                         data-groups='["illustration", "creative"]'>
                         <a class="card image-popup relative overflow-hidden"
-                            href="{{ asset('assets_main/images/small/img-6.jpg') }}">
+                            href="{{ route('user.aboutTicket.card6') }}">
                             <!-- Image -->
                             <img src="{{ asset('assets_main/images/small/img-6.jpg') }}" alt="work-image"
                                 class="w-full h-auto">
@@ -244,7 +241,7 @@
                     <!-- Card 7 -->
                     <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["graphic", "design"]'>
                         <a class="card image-popup relative overflow-hidden"
-                            href="{{ asset('assets_main/images/small/img-7.jpg') }}">
+                            href="{{ route('user.aboutTicket.card7') }}">
                             <!-- Image -->
                             <img src="{{ asset('assets_main/images/small/img-7.jpg') }}" alt="work-image"
                                 class="w-full h-auto">
@@ -274,7 +271,7 @@
                     <!-- Card 8 -->
                     <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["creative", "branding"]'>
                         <a class="card image-popup relative overflow-hidden"
-                            href="{{ asset('assets_main/images/small/img-8.jpg') }}">
+                            href="{{ route('user.aboutTicket.card8') }}">
                             <!-- Image -->
                             <img src="{{ asset('assets_main/images/small/img-8.jpg') }}" alt="work-image"
                                 class="w-full h-auto">

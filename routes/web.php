@@ -87,7 +87,14 @@ Route::middleware(['role:admin'])->group(function () {
 Route::middleware(['role:user'])->group(function(){
     Route::get('/user/dashboard',[FrontendUserController::class,"dashboard"])->name('user.dashboard');
 
-    Route::get('/about/ticket',[FrontendUserController::class,"aboutTicket"])->name('user.aboutTicket');
+    Route::get('/about/ticket/card1',[FrontendUserController::class,"aboutTicketCard1"])->name('user.aboutTicket.card1');
+    Route::get('/about/ticket/card2',[FrontendUserController::class,"aboutTicketCard2"])->name('user.aboutTicket.card2');
+    Route::get('/about/ticket/card3',[FrontendUserController::class,"aboutTicketCard3"])->name('user.aboutTicket.card3');
+    Route::get('/about/ticket/card4',[FrontendUserController::class,"aboutTicketCard4"])->name('user.aboutTicket.card4');
+    Route::get('/about/ticket/card5',[FrontendUserController::class,"aboutTicketCard5"])->name('user.aboutTicket.card5');
+    Route::get('/about/ticket/card6',[FrontendUserController::class,"aboutTicketCard6"])->name('user.aboutTicket.card6');
+    Route::get('/about/ticket/card7',[FrontendUserController::class,"aboutTicketCard7"])->name('user.aboutTicket.card7');
+    Route::get('/about/ticket/card8',[FrontendUserController::class,"aboutTicketCard8"])->name('user.aboutTicket.card8');
 
 
 });

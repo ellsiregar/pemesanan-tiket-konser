@@ -12,7 +12,36 @@ class UserController extends Controller
         return view('frontend.user.layouts.app');
     }
 
-    public function aboutTicket(){
-        return view('frontend.user.about_ticket');
+    public function aboutTicketCard1(){
+        return view('frontend.user.about_ticket_card1');
     }
+
+    public function aboutTicketCard2() {
+        return view('frontend.user.about_ticket_card2');
+    }
+
+    
+    public function aboutTicketCard3() {
+        return view('frontend.user.about_ticket_card3');
+
+    } public function aboutTicketCard4() {
+        return view('frontend.user.about_ticket_card4');
+    }
+
+    public function aboutTicketCard5() {
+        return view('frontend.user.about_ticket_card5');
+    }
+
+    public function aboutTicketCard6() {
+        return view('frontend.user.about_ticket_card6');
+    }
+
+    public function aboutTicketCard7() {
+        return view('frontend.user.about_ticket_card7');
+    }
+
+    public function aboutTicketCard8() {
+        return view('frontend.user.about_ticket_card8');
+    }
+
 }
