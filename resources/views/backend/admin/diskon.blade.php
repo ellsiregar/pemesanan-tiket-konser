@@ -15,7 +15,7 @@
                 <h5 class="card-title">Website Pemesanan Tiket - Diskon</h5>
                 <a href="{{route('diskon_create')}}" class="btn btn-primary btn-sm">Tambah</a>
                 <div class="table-responsive">
-                    <table class="table text-nowrap align-middle mb-0">
+                    <table class="table text-nowrap align-middle mb-0" id="diskon">
                         <thead>
                             <tr class="border-2 border-bottom border-primary border-0">
                                 <th scope="col">No</th>
@@ -44,5 +44,11 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#diskon').DataTable();
+        });
+    </script>
 
 @endsection

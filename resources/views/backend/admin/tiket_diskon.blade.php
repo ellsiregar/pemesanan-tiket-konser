@@ -14,7 +14,7 @@
             <div class="card-body">
                 <h5 class="card-title">Website Pemesanan Tiket - Tiket Diskon</h5>
                 <div class="table-responsive">
-                    <table class="table text-nowrap align-middle mb-0">
+                    <table class="table text-nowrap align-middle mb-0" id="tiket_diskon">
                         <thead>
                             <tr class="border-2 border-bottom border-primary border-0">
                                 <th scope="col">No</th>
@@ -38,5 +38,11 @@
             </div>
         </div>
     </div>
+
+<script>
+    $(document).ready(function() {
+        $('#tiket_diskon').DataTable();
+    });
+</script>
 
 @endsection
