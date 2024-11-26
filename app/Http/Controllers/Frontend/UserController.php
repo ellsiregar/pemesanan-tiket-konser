@@ -11,4 +11,8 @@ class UserController extends Controller
     {
         return view('frontend.user.layouts.app');
     }
+
+    public function aboutTicket(){
+        return view('frontend.user.about_ticket');
+    }
 }

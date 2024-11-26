@@ -84,6 +84,10 @@ Route::middleware(['role:admin'])->group(function () {
 
 });
 
-Route::middleware(['role:user'])->group (function(){
+Route::middleware(['role:user'])->group(function(){
     Route::get('/user/dashboard',[FrontendUserController::class,"dashboard"])->name('user.dashboard');
+
+    Route::get('/about/ticket',[FrontendUserController::class,"aboutTicket"])->name('user.aboutTicket');
+
+
 });
