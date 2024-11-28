@@ -22,7 +22,7 @@
                         {{$errors->first('login_error')}}
                     </div>
                     @endif
-                    <div class="col-md-8 col-lg-6 col-xxl-3">
+                    <div class="col-md-8 col-lg-4 col-xxl-3">
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
