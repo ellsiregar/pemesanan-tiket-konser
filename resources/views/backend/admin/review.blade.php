@@ -14,7 +14,7 @@
         <div class="card-body">
             <h5 class="card-title">review</h5>
             <div class="table-responsive">
-                <table class="table text-nowrap align-middle mb-0">
+                <table class="table text-nowrap align-middle mb-0" id="review">
                     <thead>
                         <tr class="border-2 border-bottom border-primary border-0">
                             <th scope="col">No</th>
@@ -33,7 +33,7 @@
                             <td>{{ $review->user->username}}</td>
                             <td>{{ $review->rating}}</td>
                             <td>{{ $review->comment}}</td>
-                            <td>{{ $review->riview_date}}</td>
+                            <td>{{ $review->review_date}}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -42,5 +42,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#review').DataTable();
+    });
+</script>
 
 @endsection
