@@ -17,12 +17,12 @@
             class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
             <div class="d-flex align-items-center justify-content-center w-100">
                 <div class="row justify-content-center w-100">
-                    @if ($errors->has('login_error'))
-                    <div class="alert alert-danger">
-                        {{$errors->first('login_error')}}
-                    </div>
-                    @endif
                     <div class="col-md-8 col-lg-4 col-xxl-3">
+                        @if ($errors->has('login_error'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('login_error') }}
+                            </div>
+                        @endif
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
@@ -34,7 +34,8 @@
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
                                         <input type="text" class="form-control" name="username" id="username"
-                                            aria-describedby="emailHelp" placeholder="username" value="{{ old('username') }}">
+                                            aria-describedby="emailHelp" placeholder="username"
+                                            value="{{ old('username') }}">
                                         <div class="text-danger">
                                             @error('username')
                                                 {{ $message }}
@@ -53,8 +54,9 @@
                                     <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4">Sign in</button>
                                     <div class="d-flex align-items-center justify-content-center">
                                         <p class="fs-4 mb-0 fw-bold">don't have account ?</p>
-                                        <a class="text-primary fw-bold ms-2" href="{{route('user.register')}}">Create an account</a>
-                                      </div>
+                                        <a class="text-primary fw-bold ms-2" href="{{ route('user.register') }}">Create
+                                            an account</a>
+                                    </div>
                                 </form>
                             </div>
                         </div>
