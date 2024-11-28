@@ -11,10 +11,6 @@ use App\Http\Controllers\Backend\TiketController;
 use App\Http\Controllers\Backend\TiketDiskonController;
 use App\Http\Controllers\Backend\TransaksiController;
 use App\Http\Controllers\Frontend\UserController as FrontendUserController;
-use App\Http\Controllers\User\UserController;
-use App\Models\KategoriTiket;
-use App\Models\SeatAllocations;
-use App\Models\TiketDiskon;
 use Illuminate\Support\Facades\Route;
 
 Route::get('#', function () {
