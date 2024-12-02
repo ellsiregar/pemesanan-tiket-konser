@@ -66,6 +66,14 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <label for="foto" class="form-label">Foto</label>
+                                <input type="file" class="form-control" id="foto" name="foto">
+                                <div class="text-danger">
+                                @error('foto')
+                                {{ $message }}
+                                @enderror
+                            </div>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>
                     </div>
