@@ -25,74 +25,84 @@
 
     <!-- App css  (Mandatory in All Pages) -->
     <link href="{{ asset('assets_main/css/app.min.css') }}" rel="stylesheet" type="text/css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
 
 <body>
     <div class="wrapper">
-
-        <!-- Start Sidebar -->
-        <aside id="app-menu"
-            class="hs-overlay fixed inset-y-0 start-0 z-60 hidden w-sidenav min-w-sidenav bg-default-900 overflow-y-auto -translate-x-full transform transition-all duration-200 hs-overlay-open:translate-x-0 lg:bottom-0 lg:end-auto lg:z-30 lg:block lg:translate-x-0 rtl:translate-x-full rtl:hs-overlay-open:translate-x-0 rtl:lg:translate-x-0 print:hidden [--body-scroll:true] [--overlay-backdrop:true] lg:[--overlay-backdrop:false]">
-
-            <div class="flex flex-col h-full">
-                <!-- Sidenav Logo -->
-                <div class="sticky top-0 flex h-topbar items-center justify-between px-6">
-                    <a href="index.html">
-                        <img src="{{ asset('assets_main/images/logo-light.png') }}" alt="logo" class="flex h-8">
-                    </a>
-                </div>
-
-                <div class="p-4 h-[calc(100%-theme('spacing.topbar'))] flex-grow" data-simplebar>
-                    <!-- Menu -->
-                </div>
-
-            </div>
-        </aside>
-        <!-- End Sidebar -->
-
         <!-- Start Page Content here -->
         <div class="page-content">
-
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Dashboard</a>
+                    <div class="dropdown ms-auto">
+                        <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button"
+                            id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-circle me-2"
+                                style="width: 40px; height: 40px;">
+                            <span class="fw-bold">Nama User</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><button class="dropdown-item" id="logout-btn">Logout</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
             <main>
-
                 <!-- Page Title Start -->
 
                 <!-- Page Title End -->
-
                 <div id="gallery-wrapper" class="flex justify-center" h>
                     <!-- Card 1 -->
-                        <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item"
-                            data-groups='["creative", "photography"]'>
-                            <a class="card image-popup relative overflow-hidden" href="{{ route('user.aboutTicket.card1') }}">
-                                <!-- Image -->
-                                <img src="{{ asset('assets_main/images/small/img-1.jpg') }}" alt="work-image"
-                                    class="w-full h-auto">
+                    <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["creative", "photography"]'>
+                        <a class="card image-popup relative overflow-hidden"
+                            href="{{ route('user.aboutTicket.card1') }}">
+                            <!-- Image -->
+                            <img src="{{ asset('assets_main/images/small/img-1.jpg') }}" alt="work-image"
+                                class="w-full h-auto">
 
-                                <!-- Badge -->
-                                <span
-                                    class="bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full absolute top-4 right-4">
-                                    Creative
-                                </span>
+                            <!-- Badge -->
+                            <span
+                                class="bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full absolute top-4 right-4">
+                                Creative
+                            </span>
 
-                                <!-- Card Body -->
-                                <div class="p-4 bg-white">
-                                    <div class="flex items-center">
-                                        <!-- User Avatar -->
-                                        <img src="{{ asset('assets_main/images/users/avatar-1.jpg') }}" alt="user img"
-                                            class="w-12 h-12 rounded-full">
-                                        <!-- User Info -->
-                                        <div class="ml-2">
-                                            <h4 class="text-base font-semibold text-gray-800">Mike John</h4>
-                                            <p class="text-sm text-gray-500">mikejohn@mail.com</p>
-                                        </div>
+                            <!-- Card Body -->
+                            <div class="p-4 bg-white">
+                                <div class="flex items-center">
+                                    <!-- User Avatar -->
+                                    <img src="{{ asset('assets_main/images/users/avatar-1.jpg') }}" alt="user img"
+                                        class="w-12 h-12 rounded-full">
+                                    <!-- User Info -->
+                                    <div class="ml-2">
+                                        <h4 class="text-base font-semibold text-gray-800">Mike John</h4>
+                                        <p class="text-sm text-gray-500">mikejohn@mail.com</p>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
+                    </div>
 
                     <!-- Card 2 -->
                     <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["design", "illustration"]'>
-                        <a class="card image-popup relative overflow-hidden" href="{{ route('user.aboutTicket.card2') }}">
+                        <a class="card image-popup relative overflow-hidden"
+                            href="{{ route('user.aboutTicket.card2') }}">
                             <!-- Image -->
                             <img src="{{ asset('assets_main/images/small/img-2.jpg') }}" alt="work-image"
                                 class="w-full h-auto">
@@ -121,7 +131,8 @@
 
                     <!-- Card 3 -->
                     <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["photography", "travel"]'>
-                        <a class="card image-popup relative overflow-hidden" href="{{ route('user.aboutTicket.card3') }}">
+                        <a class="card image-popup relative overflow-hidden"
+                            href="{{ route('user.aboutTicket.card3') }}">
                             <!-- Image -->
                             <img src="{{ asset('assets_main/images/small/img-3.jpg') }}" alt="work-image"
                                 class="w-full h-auto">
@@ -180,7 +191,8 @@
 
                     <!-- Card 5 -->
                     <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["web", "development"]'>
-                        <a class="card image-popup relative overflow-hidden" href="{{ route('user.aboutTicket.card5') }}">
+                        <a class="card image-popup relative overflow-hidden"
+                            href="{{ route('user.aboutTicket.card5') }}">
                             <!-- Image -->
                             <img src="{{ asset('assets_main/images/small/img-5.jpg') }}" alt="work-image"
                                 class="w-full h-auto">
@@ -355,6 +367,9 @@
 
     <!-- Filtter Demo js -->
     <script src="{{ asset('assets_main/js/pages/gallery.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts.js"></script>
 
 </body>
 

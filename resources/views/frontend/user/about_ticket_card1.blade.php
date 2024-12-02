@@ -201,12 +201,15 @@
                 <div class="card">
                     <div class="card-body">
                         <h5><i class="bi bi-calendar-event"></i> Event Details</h5>
-                        <p><strong>Date:</strong> Mar 30, 2026</p>
-                        <p><strong>End Date:</strong> Mar 31, 2027</p>
-                        <p><strong>Venue:</strong> South Street Seaport Museum</p>
-                        <p><strong>Room:</strong> Room 02</p>
+                        @foreach ($konsers as $konser )
+                        <p><strong>Date:</strong>{{ $konser->tanggal_konser }}</p>
+                        <p><strong>Time:</strong>{{ $konser->waktu_konser }}</p>
+                        <p><strong>Venue:</strong>{{ $konser->lokasi }}</p>
+                        @endforeach
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>

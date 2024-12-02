@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Konser;
+use App\Models\Tiket;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,14 +15,15 @@ class UserController extends Controller
     }
 
     public function aboutTicketCard1(){
-        return view('frontend.user.about_ticket_card1');
+        $konsers = Konser::all();
+        return view('frontend.user.about_ticket_card1', compact('konsers'));
     }
 
     public function aboutTicketCard2() {
         return view('frontend.user.about_ticket_card2');
     }
 
-    
+
     public function aboutTicketCard3() {
         return view('frontend.user.about_ticket_card3');
 
