@@ -21,7 +21,7 @@ class Unauthorized
         }
         if (Auth::user()->role === 'admin') {
             return redirect()->route('admin.dashboard');
-        } else {
+        } elseif (Auth::user()->role === 'user') {
             return redirect()->route('user.dashboard');
         }
     }

@@ -34,6 +34,14 @@ class UserLoginController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
+            if ($request->route()->named('user.submit') && $user->role !== 'user') {
+                Auth::logout();
+                return redirect()->route('user.login')->withErrors(['login_error' => 'Halaman tidak sesuai untuk role Anda.']);
+            }elseif ($request->route()->named('admin.UserSubmit') && $user->role !== 'admin') {
+                Auth::logout();
+                return redirect()->route('admin.login')->withErrors(['login_error' => 'Halaman tidak sesuai untuk role Anda.']);
+            }
+
             if ($user->role === 'admin') {
                 return redirect()->route('admin.dashboard');
             } elseif ($user->role === 'user') {
@@ -65,5 +73,6 @@ class UserLoginController extends Controller
 
 
         return redirect()->route('user.login')->with('success', 'Registrasi berhasil silahkan log in.');
+        }
     }
-}
+
