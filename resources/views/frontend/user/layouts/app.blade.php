@@ -60,10 +60,6 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li> <a href="{{route('user.logout')}}"><button class="dropdown-item" id="logout-btn">Logout</button></li></a>
                         </ul>
                     </div>
                 </div>
