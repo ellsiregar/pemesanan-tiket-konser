@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\TiketController;
 use App\Http\Controllers\Backend\TiketDiskonController;
 use App\Http\Controllers\Backend\TransaksiController;
 use App\Http\Controllers\Frontend\TransaksiController as FrontendTransaksiController;
+use App\Http\Controllers\Frontend\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('#', function () {
@@ -81,10 +82,10 @@ Route::middleware(['role:admin'])->group(function () {
 });
 
 Route::middleware(['role:user'])->group(function(){
-    Route::get('/user/dashboard',[FrontendUserController::class,"dashboard"])->name('user.dashboard');
-    Route::get('/user/logout',[FrontendUserController::class,"logout"])->name('user.logout');
+    Route::get('/user/dashboard',[UserController::class,"dashboard"])->name('user.dashboard');
+    Route::get('/user/logout',[UserController::class,"logout"])->name('user.logout');
 
-    Route::get('/about/ticket/card/{id}',[FrontendUserController::class,"aboutTicketCard"])->name('user.aboutTicket.card1');
+    Route::get('/about/ticket/card/{id}',[UserController::class,"aboutTicketCard"])->name('user.aboutTicket.card1');
 
     Route::get('/about/ticket/transaksi',[FrontendTransaksiController::class,"transaksi"])->name('user.transaksi');
 });
