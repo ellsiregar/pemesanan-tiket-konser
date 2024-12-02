@@ -7,5 +7,9 @@ use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
 {
-    //
+    public function transaksi() {
+        return view('frontend.user.transaksi');
+    }
+
+
 }
