@@ -25,6 +25,7 @@
                                 <th scope="col" >tanggal konser</th>
                                 <th scope="col" >waktu konser</th>
                                 <th scope="col" >deskripsi</th>
+                                <th scope="col">Foto</th>
                                 <th scope="col" class="text-center">actions</th>
                             </tr>
                         </thead>
@@ -38,6 +39,9 @@
                                 <td>{{$konser->tanggal_konser}}</td>
                                 <td>{{$konser->waktu_konser}}</td>
                                 <td>{{$konser->deskripsi}}</td>
+                                <td>
+                                    <img src="{{ asset('storage/' . $konser->foto) }}" alt="" height="30">
+                                </td>
                                 <td class="text-center">
                                     <a href="{{route('konser_edit', $konser->id_konser)}}" class="btn btn-warning btn-sm">Edit</a>
                                     <a href="{{route('konser_delete', $konser->id_konser)}}" onclick="return confirm('Yakin ingin hapus data?')" class="btn btn-danger btn-sm">Delete</a>

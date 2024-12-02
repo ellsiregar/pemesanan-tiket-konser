@@ -16,6 +16,7 @@ class Konser extends Model
         'tanggal_konser',
         'waktu_konser',
         'deskripsi',
+        'foto',
     ];
 
     public function KategoriTiket(){
