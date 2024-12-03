@@ -4,13 +4,28 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SeoDash Free Bootstrap Admin Template by Adminmart</title>
+    <title>Admin Login</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/seodashlogo.png') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
+    <style>
+        .login-title {
+            background-color: blue; /* Warna latar belakang biru */
+            color: white; /* Warna teks putih */
+            font-size: 1rem; /* Ukuran teks lebih kecil */
+            font-weight: bold; /* Membuat teks tebal */
+            text-align: center; /* Teks di tengah */
+            padding: 10px; /* Spasi dalam lebih kecil */
+            border-radius: 8px; /* Sudut kotak melengkung */
+            margin-bottom: 20px; /* Jarak bawah */
+            width: 100px; /* Lebar kotak lebih kecil */
+            margin-left: auto; /* Agar kotak tetap di tengah */
+            margin-right: auto; /* Agar kotak tetap di tengah */
+        }
+    </style>
 </head>
 
 <body>
-    <!--  Body Wrapper -->
+    <!-- Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <div
@@ -25,10 +40,8 @@
                         @endif
                         <div class="card mb-0">
                             <div class="card-body">
-                                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="../assets/images/logos/logo-light.svg" alt="">
-                                </a>
-                                <p class="text-center">Your Social Campaigns</p>
+                                <!-- Kotak Login -->
+                                <div class="login-title">Login</div>
                                 <form action="{{ route('admin.UserSubmit') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
