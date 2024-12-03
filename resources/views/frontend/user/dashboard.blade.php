@@ -3,248 +3,83 @@
 @section('tittle', 'Dashboard')
 
 @section('content')
+<style>
+    .image-wrapper {
+        position: relative;
+        /* Membuat elemen anak bisa diatur secara absolut */
+    }
 
-<div id="gallery-wrapper" class="flex justify-center" h>
-    <!-- Card 1 -->
-    <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["creative", "photography"]'>
-        <a class="card image-popup relative overflow-hidden"
-            href="{{ route('user.aboutTicket.card1') }}">
-            <!-- Image -->
-            <img src="{{ asset('assets_main/images/small/img-1.jpg') }}" alt="work-image"
-                class="w-full h-auto">
+    .circle {
+        position: absolute;
+        bottom: -35px;
+        /* Posisi lingkaran sebagian keluar dari gambar */
+        left: 20px;
+        /* Jarak dari sisi kiri */
+        width: 80px;
+        /* Ukuran lingkaran */
+        height: 80px;
+        background-color: #f04545;
+        /* Warna lingkaran */
+        border-radius: 50%;
+        /* Membuat elemen menjadi lingkaran */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /* Opsional: Bayangan */
+        z-index: 1;
+        /* Agar lingkaran berada di atas gambar */
+        color: white;
+        /* Warna teks di dalam lingkaran */
+        font-weight: bold;
+        text-align: center;
+        font-size: 12px;
+    }
 
-            <!-- Badge -->
-            <span
-                class="bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full absolute top-4 right-4">
-                Creative
-            </span>
-
-            <!-- Card Body -->
-            <div class="p-4 bg-white">
-                <div class="flex items-center">
-                    <!-- User Avatar -->
-                    <img src="{{ asset('assets_main/images/users/avatar-1.jpg') }}" alt="user img"
-                        class="w-12 h-12 rounded-full">
-                    <!-- User Info -->
-                    <div class="ml-2">
-                        <h4 class="text-base font-semibold text-gray-800">Mike John</h4>
-                        <p class="text-sm text-gray-500">mikejohn@mail.com</p>
+    .date-text {
+        line-height: 1.2;
+        /* Sesuaikan tinggi teks */
+        font-size: 12px;
+        /* Ukuran font */
+        text-transform: uppercase;
+        /* Opsional: Huruf besar semua */
+    }
+</style>
+<div class="row">
+    @foreach($konsers as $konser)
+    <a href="" style="text-decoration: none;">
+        <div class="col-3">
+            <div class="card shadow">
+                <div class="image-wrapper">
+                    <img src="{{ asset('storage/' . $konser->foto) }}" class="card-img-top" alt="...">
+                    <div class="circle">
+                        <span class="date-text">
+                            {{ strtoupper(\Carbon\Carbon::parse($konser->tanggal_konser)->format('M')) }}<br>
+                            {{ \Carbon\Carbon::parse($konser->tanggal_konser)->format('d-Y') }}
+                        </span>
+                    </div>
+                </div>
+                <br>
+                <div class="card-body">
+                    <h5 class="card-title">Concert Linda Coline</h5>
+                    <p class="card-text">{{ Str::limit($konser->deskripsi, 100, '...') }}</p>
+                    <p class="d-flex align-items-center" style="gap: 5px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10" />
+                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                        </svg>
+                        <small>{{ $konser->lokasi }}</small>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between">
+                        <small style="font-size: 16px; font-weight: 600;">Get Ticket</small>
+                        <small style="font-size: 16px; font-weight: 600;" class="text-danger">$10 - $30</small>
                     </div>
                 </div>
             </div>
-        </a>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["design", "illustration"]'>
-        <a class="card image-popup relative overflow-hidden"
-            href="{{ route('user.aboutTicket.card2') }}">
-            <!-- Image -->
-            <img src="{{ asset('assets_main/images/small/img-2.jpg') }}" alt="work-image"
-                class="w-full h-auto">
-
-            <!-- Badge -->
-            <span
-                class="bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full absolute top-4 right-4">
-                Design
-            </span>
-
-            <!-- Card Body -->
-            <div class="p-4 bg-white">
-                <div class="flex items-center">
-                    <!-- User Avatar -->
-                    <img src="{{ asset('assets_main/images/users/avatar-2.jpg') }}" alt="user img"
-                        class="w-12 h-12 rounded-full">
-                    <!-- User Info -->
-                    <div class="ml-2">
-                        <h4 class="text-base font-semibold text-gray-800">Anna Lee</h4>
-                        <p class="text-sm text-gray-500">annalee@mail.com</p>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["photography", "travel"]'>
-        <a class="card image-popup relative overflow-hidden"
-            href="{{ route('user.aboutTicket.card3') }}">
-            <!-- Image -->
-            <img src="{{ asset('assets_main/images/small/img-3.jpg') }}" alt="work-image"
-                class="w-full h-auto">
-
-            <!-- Badge -->
-            <span
-                class="bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full absolute top-4 right-4">
-                Photography
-            </span>
-
-            <!-- Card Body -->
-            <div class="p-4 bg-white">
-                <div class="flex items-center">
-                    <!-- User Avatar -->
-                    <img src="{{ asset('assets_main/images/users/avatar-3.jpg') }}" alt="user img"
-                        class="w-12 h-12 rounded-full">
-                    <!-- User Info -->
-                    <div class="ml-2">
-                        <h4 class="text-base font-semibold text-gray-800">John Doe</h4>
-                        <p class="text-sm text-gray-500">johndoe@mail.com</p>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["design", "branding"]'>
-        <a class="card image-popup relative overflow-hidden"
-            href="{{ route('user.aboutTicket.card4') }}">
-            <!-- Image -->
-            <img src="{{ asset('assets_main/images/small/img-4.jpg') }}" alt="work-image"
-                class="w-full h-auto">
-
-            <!-- Badge -->
-            <span
-                class="bg-yellow-500 text-white text-xs font-semibold px-3 py-1 rounded-full absolute top-4 right-4">
-                Design
-            </span>
-
-            <!-- Card Body -->
-            <div class="p-4 bg-white">
-                <div class="flex items-center">
-                    <!-- User Avatar -->
-                    <img src="{{ asset('assets_main/images/users/avatar-4.jpg') }}" alt="user img"
-                        class="w-12 h-12 rounded-full">
-                    <!-- User Info -->
-                    <div class="ml-2">
-                        <h4 class="text-base font-semibold text-gray-800">Sarah Paul</h4>
-                        <p class="text-sm text-gray-500">sarahpaul@mail.com</p>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <!-- Card 5 -->
-    <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["web", "development"]'>
-        <a class="card image-popup relative overflow-hidden"
-            href="{{ route('user.aboutTicket.card5') }}">
-            <!-- Image -->
-            <img src="{{ asset('assets_main/images/small/img-5.jpg') }}" alt="work-image"
-                class="w-full h-auto">
-
-            <!-- Badge -->
-            <span
-                class="bg-purple-500 text-white text-xs font-semibold px-3 py-1 rounded-full absolute top-4 right-4">
-                Web Dev
-            </span>
-
-            <!-- Card Body -->
-            <div class="p-4 bg-white">
-                <div class="flex items-center">
-                    <!-- User Avatar -->
-                    <img src="{{ asset('assets_main/images/users/avatar-5.jpg') }}" alt="user img"
-                        class="w-12 h-12 rounded-full">
-                    <!-- User Info -->
-                    <div class="ml-2">
-                        <h4 class="text-base font-semibold text-gray-800">David Smith</h4>
-                        <p class="text-sm text-gray-500">davidsmith@mail.com</p>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <!-- Card 6 -->
-    <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item"
-        data-groups='["illustration", "creative"]'>
-        <a class="card image-popup relative overflow-hidden"
-            href="{{ route('user.aboutTicket.card6') }}">
-            <!-- Image -->
-            <img src="{{ asset('assets_main/images/small/img-6.jpg') }}" alt="work-image"
-                class="w-full h-auto">
-
-            <!-- Badge -->
-            <span
-                class="bg-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full absolute top-4 right-4">
-                Illustration
-            </span>
-
-            <!-- Card Body -->
-            <div class="p-4 bg-white">
-                <div class="flex items-center">
-                    <!-- User Avatar -->
-                    <img src="{{ asset('assets_main/images/users/avatar-6.jpg') }}" alt="user img"
-                        class="w-12 h-12 rounded-full">
-                    <!-- User Info -->
-                    <div class="ml-2">
-                        <h4 class="text-base font-semibold text-gray-800">Emily Clark</h4>
-                        <p class="text-sm text-gray-500">emilyclark@mail.com</p>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <!-- Card 7 -->
-    <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["graphic", "design"]'>
-        <a class="card image-popup relative overflow-hidden"
-            href="{{ route('user.aboutTicket.card7') }}">
-            <!-- Image -->
-            <img src="{{ asset('assets_main/images/small/img-7.jpg') }}" alt="work-image"
-                class="w-full h-auto">
-
-            <!-- Badge -->
-            <span
-                class="bg-indigo-500 text-white text-xs font-semibold px-3 py-1 rounded-full absolute top-4 right-4">
-                Graphic Design
-            </span>
-
-            <!-- Card Body -->
-            <div class="p-4 bg-white">
-                <div class="flex items-center">
-                    <!-- User Avatar -->
-                    <img src="{{ asset('assets_main/images/users/avatar-7.jpg') }}" alt="user img"
-                        class="w-12 h-12 rounded-full">
-                    <!-- User Info -->
-                    <div class="ml-2">
-                        <h4 class="text-base font-semibold text-gray-800">Tom Hardy</h4>
-                        <p class="text-sm text-gray-500">tomhardy@mail.com</p>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <!-- Card 8 -->
-    <div class="2xl:w-1/4 xl:w-1/3 md:w-1/2 p-3 picture-item" data-groups='["creative", "branding"]'>
-        <a class="card image-popup relative overflow-hidden"
-            href="{{ route('user.aboutTicket.card8') }}">
-            <!-- Image -->
-            <img src="{{ asset('assets_main/images/small/img-8.jpg') }}" alt="work-image"
-                class="w-full h-auto">
-
-            <!-- Badge -->
-            <span
-                class="bg-orange-500 text-white text-xs font-semibold px-3 py-1 rounded-full absolute top-4 right-4">
-                Branding
-            </span>
-
-            <!-- Card Body -->
-            <div class="p-4 bg-white">
-                <div class="flex items-center">
-                    <!-- User Avatar -->
-                    <img src="{{ asset('assets_main/images/users/avatar-8.jpg') }}" alt="user img"
-                        class="w-12 h-12 rounded-full">
-                    <!-- User Info -->
-                    <div class="ml-2">
-                        <h4 class="text-base font-semibold text-gray-800">Alice Walker</h4>
-                        <p class="text-sm text-gray-500">alicewalker@mail.com</p>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-
+        </div>
+    </a>
+    @endforeach
 </div>
 @endsection

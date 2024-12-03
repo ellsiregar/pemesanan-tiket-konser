@@ -14,7 +14,8 @@ class UserController extends Controller
 {
     public function dashboard()
     {
-        return view('frontend.user.dashboard');
+        $konsers = Konser::all();
+        return view('frontend.user.dashboard', compact('konsers'));
     }
 
     public function logout(Request $request)

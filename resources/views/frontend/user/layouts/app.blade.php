@@ -44,7 +44,7 @@
         <!-- Start Page Content here -->
         <div class="page-content">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm" style="padding: 25px;">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{ route('user.dashboard') }}">Dashboard</a>
                     <div class="dropdown ms-auto">

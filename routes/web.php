@@ -84,8 +84,10 @@ Route::middleware(['role:admin'])->group(function () {
 Route::middleware(['role:user'])->group(function(){
     Route::get('/user/dashboard',[UserController::class,"dashboard"])->name('user.dashboard');
     Route::get('/user/logout',[UserController::class,"logout"])->name('user.logout');
+    Route::get('/user/profile',[UserController::class,"profileUser"])->name('user.profile');
+    Route::put('/user/profile',[UserController::class,"updateUser"])->name('user.profile.update');
 
-    Route::get('/about/ticket/card/{id}',[UserController::class,"aboutTicketCard"])->name('user.aboutTicket.card1');
+    Route::get('/user/about/tiket/konser/{id}',[UserController::class,"aboutTiketKonser"])->name('user.aboutTiket.konser');
 
     Route::get('/about/ticket/transaksi',[FrontendTransaksiController::class,"transaksi"])->name('user.transaksi');
 });
