@@ -42,62 +42,65 @@
   </style>
 </head>
 <body>
-  <div class="container my-5">
-    <div class="row">
-      <!-- Cart Section -->
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-body">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Remove</th>
-                  <th scope="col">Event Name</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><button class="btn btn-outline-danger btn-sm">X</button></td>
-                  <td>Concert Linda Coline - Ticket 1</td>
-                  <td>$10</td>
-                  <td><input type="number" value="1" class="form-control form-control-sm" style="width: 60px;"></td>
-                  <td>$10</td>
-                </tr>
-              </tbody>
-            </table>
-            <button class="btn btn-primary mt-3">Update Cart</button>
-          </div>
-        </div>
-      </div>
-      <!-- Discount and Total Section -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5>Discount Code</h5>
-            <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Coupon Code">
-              <button class="btn btn-primary mt-2">Apply Coupon</button>
+    @foreach ($tikets as $tiket)
+    <div class="container my-5">
+        <div class="row">
+          <!-- Cart Section -->
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Remove</th>
+                      <th scope="col">Event Name</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><button class="btn btn-outline-danger btn-sm">X</button></td>
+                      <td>{{$tiket->id_kategori_tiket->id_konser->nama_konser}}</td>
+                      <td>{{$tiket->harga_tiket}}</td>
+                      <td><input type="number" value="1" class="form-control form-control-sm" style="width: 60px;"></td>
+                      <td>$10</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button class="btn btn-primary mt-3">Update Cart</button>
+              </div>
             </div>
-            <h5>Cart Total</h5>
-            <ul class="list-group">
-              <li class="list-group-item d-flex justify-content-between">
-                <span>Subtotal</span>
-                <span>$10</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                <span>Total</span>
-                <span>$10</span>
-              </li>
-            </ul>
-            <button class="btn btn-danger mt-3 w-100">Check Out</button>
+          </div>
+          <!-- Discount and Total Section -->
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h5>Discount Code</h5>
+                <div class="mb-3">
+                  <input type="text" class="form-control" placeholder="Coupon Code">
+                  <button class="btn btn-primary mt-2">Apply Coupon</button>
+                </div>
+                <h5>Cart Total</h5>
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span>Subtotal</span>
+                    <span>{{$tiket->harga_tiket}}<</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span>Total</span>
+                    <span>{{$tiket->harga_tiket}}<</span>
+                  </li>
+                </ul>
+                <button class="btn btn-danger mt-3 w-100">Check Out</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    @endforeach
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
