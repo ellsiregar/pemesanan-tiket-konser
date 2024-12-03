@@ -52,7 +52,7 @@
                             id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-circle me-2"
                                 style="width: 40px; height: 40px;">
-                            <span class="fw-bold">{{Auth::user()->username}}</span>
+                            <span class="fw-bold">{{Auth::user()->name}}</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                             <li><a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a></li>
