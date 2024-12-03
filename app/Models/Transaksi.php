@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaksi extends Model
 {
-    protected$table ='transaksi';
+    protected $table = 'transaksi';
     protected $primaryKey = 'id_transaksi';
 
-    protected$fillable = [
+    protected $fillable = [
         'order_id',
         'payment_method',
         'payment_status',
@@ -23,7 +23,12 @@ class Transaksi extends Model
     }
 
     public function seatAllocations()
-{
-    return $this->hasMany(SeatAllocations::class, 'id_transaksi', 'id_transaksi');
-}
+    {
+        return $this->hasMany(SeatAllocations::class, 'id_transaksi', 'id_transaksi');
+    }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'users_id', 'users_id');
+    }
 }
