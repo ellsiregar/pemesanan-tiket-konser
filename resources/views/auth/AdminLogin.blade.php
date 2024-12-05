@@ -5,23 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Login</title>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/seodashlogo.png') }}" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/music.png') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
-    <style>
-        .login-title {
-            background-color: blue; /* Warna latar belakang biru */
-            color: white; /* Warna teks putih */
-            font-size: 1rem; /* Ukuran teks lebih kecil */
-            font-weight: bold; /* Membuat teks tebal */
-            text-align: center; /* Teks di tengah */
-            padding: 10px; /* Spasi dalam lebih kecil */
-            border-radius: 8px; /* Sudut kotak melengkung */
-            margin-bottom: 20px; /* Jarak bawah */
-            width: 100px; /* Lebar kotak lebih kecil */
-            margin-left: auto; /* Agar kotak tetap di tengah */
-            margin-right: auto; /* Agar kotak tetap di tengah */
-        }
-    </style>
 </head>
 
 <body>
@@ -41,7 +26,9 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <!-- Kotak Login -->
-                                <div class="login-title">Login</div>
+                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                    <h3>Admin Login</h3>
+                                </div>
                                 <form action="{{ route('admin.UserSubmit') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
