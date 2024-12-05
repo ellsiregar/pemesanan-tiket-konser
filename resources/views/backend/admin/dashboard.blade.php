@@ -12,7 +12,7 @@
                 <div class="card text-center shadow h-100">
                     <div class="card-body d-flex flex-column justify-content-center">
                         <h5 class="card-title">Total Konser</h5>
-                        <p class="card-text display-6 text-primary">25</p>
+                        <p class="card-text display-6 text-primary">{{$totalKonser}}</p>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <div class="card text-center shadow h-100">
                     <div class="card-body d-flex flex-column justify-content-center">
                         <h5 class="card-title">Tiket Terjual</h5>
-                        <p class="card-text display-6 text-success">1,200</p>
+                        <p class="card-text display-6 text-success">{{$TiketTerjual}}</p>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <div class="card text-center shadow h-100">
                     <div class="card-body d-flex flex-column justify-content-center">
                         <h5 class="card-title">Pendapatan</h5>
-                        <p class="card-text display-6 text-warning">Rp 50 Juta</p>
+                        <p class="card-text display-6 text-warning">Rp {{$pendapatan}}</p>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                 <div class="card text-center shadow h-100">
                     <div class="card-body d-flex flex-column justify-content-center">
                         <h5 class="card-title">Pengguna Terdaftar</h5>
-                        <p class="card-text display-6 text-danger">850</p>
+                        <p class="card-text display-6 text-danger">{{$PenggunaTerdaftar}}</p>
                     </div>
                 </div>
             </div>

@@ -125,4 +125,5 @@ class KonserController extends Controller
     return redirect()->back()->with('success', 'Data konser berhasil dihapus.');
 
     }
+
 }
