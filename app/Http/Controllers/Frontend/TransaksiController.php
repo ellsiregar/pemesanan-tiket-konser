@@ -35,4 +35,23 @@ class TransaksiController extends Controller
 
         return view('frontend.user.shopping_cart', compact('konser', 'tiket', 'diskons'));
     }
+
+    public function checkout($id, $id_tiket) {
+        $konser = Konser::find($id);
+        if (!$konser) {
+            // Pesan flash jika konser tidak ditemukan
+            return back()->with('error', 'Konser tidak ditemukan!');
+        }
+
+         // Hanya mengambil tiket yang terkait dengan konser ini
+        $tiket = Tiket::where('id_tiket', $id_tiket)
+            ->whereHas('kategoriTiket', function ($query) use ($id) {
+                $query->where('id_konser', $id);
+            })
+            ->with('kategoriTiket.konser')
+            ->first(); // Gunakan `first()` jika hanya satu tiket yang diinginkan
+
+
+        return view('frontend.user.checkout', compact('konser', 'tiket'));
+    }
 }

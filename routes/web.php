@@ -37,7 +37,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::put('/admin/profile/update', [AdminController::class, 'update'])->name('admin.profile.update');
-   
+
 
     Route::get('/admin/konser',[KonserController::class,"konser"])->name('konser');
     Route::get('/konser/create',[KonserController::class, "create"])->name('konser_create');
@@ -91,5 +91,7 @@ Route::middleware(['role:user'])->group(function(){
     Route::get('/user/about/tiket/konser/{id}',[UserController::class,"aboutTiketKonser"])->name('user.aboutTiket.konser');
 
     Route::get('/about/transaksi/konser/{id}/tiket/{id_tiket}',[FrontendTransaksiController::class,"transaksi"])->name('user.transaksi');
+
+    Route::get('/user/checkout/konser/{id}/tiket/{id_tiket}',[FrontendTransaksiController::class,"checkout"])->name('user.checkout');
 
 });
