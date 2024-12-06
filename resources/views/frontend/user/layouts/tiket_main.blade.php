@@ -107,7 +107,6 @@
     <!-- Main Content -->
     <div class="container main-content">
         @yield('content')
-
     </div>
 
     <!-- Sidebar -->

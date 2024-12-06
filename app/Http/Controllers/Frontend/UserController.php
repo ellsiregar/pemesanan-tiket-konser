@@ -15,14 +15,40 @@ class UserController extends Controller
     public function dashboard()
     {
         $konsers = Konser::all();
-        return view('frontend.user.dashboard', compact('konsers'));
+
+        // Tiket termurah (reguler)
+        $tiketTermurah = Tiket::whereHas('kategoriTiket', function ($query) {
+            $query->where('nama_kategori', 'reguler');
+        })->orderBy('harga_tiket', 'asc')->first();
+
+        // Tiket termahal (vvip)
+        $tiketTermahal = Tiket::whereHas('kategoriTiket', function ($query) {
+            $query->where('nama_kategori', 'VVIP');
+        })->orderBy('harga_tiket', 'desc')->first();
+
+        return view('frontend.user.dashboard', compact('konsers', 'tiketTermurah', 'tiketTermahal'));
+    }
+
+    public function aboutTiketKonser($id_konser)
+    {
+        $konser = Konser::find($id_konser);
+        if (!$konser) {
+            return back();
+        }
+        $tikets = Tiket::whereHas('kategoriTiket', function ($query) use ($id_konser) {
+            $query->where('id_konser', $id_konser);
+        })->with('kategoriTiket.konser')->get();
+
+
+
+        return view('frontend.user.about_tiket_konser', compact('konser', 'tikets'));
     }
 
     public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
-        $request->session()->regenerateToken()  ;
+        $request->session()->regenerateToken();
         return view('auth.UserLogin');
     }
 

@@ -89,5 +89,6 @@ Route::middleware(['role:user'])->group(function(){
 
     Route::get('/user/about/tiket/konser/{id}',[UserController::class,"aboutTiketKonser"])->name('user.aboutTiket.konser');
 
-    Route::get('/about/ticket/transaksi',[FrontendTransaksiController::class,"transaksi"])->name('user.transaksi');
+    Route::get('/about/transaksi/konser/{id}/tiket/{id_tiket}',[FrontendTransaksiController::class,"transaksi"])->name('user.transaksi');
+
 });
