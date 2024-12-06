@@ -37,6 +37,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::put('/admin/profile/update', [AdminController::class, 'update'])->name('admin.profile.update');
+   
 
     Route::get('/admin/konser',[KonserController::class,"konser"])->name('konser');
     Route::get('/konser/create',[KonserController::class, "create"])->name('konser_create');

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('../assets/images/logos/seodashlogo.png') }}" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('../assets/images/logos/music.png') }}" />
     <link rel="stylesheet" href="{{ asset('../assets/css/styles.min.css') }}" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
@@ -19,14 +19,7 @@
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
             <div>
-                <div class="brand-logo d-flex align-items-center justify-content-between">
-                    <a href="{{ route('admin.dashboard') }}" class="text-nowrap logo-img">
-                        <img src="../assets/images/logos/logo-light.svg" alt="" />
-                    </a>
-                    <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-                        <i class="ti ti-x fs-8"></i>
-                    </div>
-                </div>
+
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
                     <ul id="sidebarnav">
@@ -139,16 +132,6 @@
                                             <i class="ti ti-user fs-6"></i>
                                             <p class="mb-0 fs-3">My Profile</p>
                                         </a>
-                                        <a href="javascript:void(0)"
-                                            class="d-flex align-items-center gap-2 dropdown-item">
-                                            <i class="ti ti-mail fs-6"></i>
-                                            <p class="mb-0 fs-3">My Account</p>
-                                        </a>
-                                        <a href="javascript:void(0)"
-                                            class="d-flex align-items-center gap-2 dropdown-item">
-                                            <i class="ti ti-list-check fs-6"></i>
-                                            <p class="mb-0 fs-3">My Task</p>
-                                        </a>
                                         <a href="{{ route('admin.logout') }}"
                                             class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                                     </div>
@@ -162,10 +145,9 @@
             <div class="container-fluid">
                 @yield('content')
                 <div class="py-6 px-6 text-center">
-                    <p class="mb-0 fs-4">Design and Developed by <a href="https://adminmart.com/" target="_blank"
-                            class="pe-1 text-primary text-decoration-underline">AdminMart.com</a>Distributed by <a
-                            href="https://themewagon.com/" target="_blank"
-                            class="pe-1 text-primary text-decoration-underline">ThemeWagon</a></p>
+                    <p class="mb-0 fs-4">Desain dan Dikembangkan oleh <a href="https://kelompok2/" target="_blank"
+                            class="pe-1 text-primary text-decoration-underline">kelompok2</a>
+
                 </div>
             </div>
         </div>

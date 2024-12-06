@@ -4,13 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SeoDash Free Bootstrap Admin Template by Adminmart</title>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/seodashlogo.png') }}" />
+    <title>Admin Login</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/music.png') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
 </head>
 
 <body>
-    <!--  Body Wrapper -->
+    <!-- Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <div
@@ -25,10 +25,10 @@
                         @endif
                         <div class="card mb-0">
                             <div class="card-body">
-                                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="../assets/images/logos/logo-light.svg" alt="">
-                                </a>
-                                <p class="text-center">Your Social Campaigns</p>
+                                <!-- Kotak Login -->
+                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                    <h3>Admin Login</h3>
+                                </div>
                                 <form action="{{ route('admin.UserSubmit') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
