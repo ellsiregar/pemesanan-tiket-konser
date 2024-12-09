@@ -52,7 +52,7 @@
                     <a href="{{ route('user.aboutTiket.konser', $konser->id_konser) }}" style="text-decoration: none;">
                         <div class="card shadow">
                             <div class="image-wrapper">
-                                <img src="{{ asset('storage/' . $konser->foto) }}" class="card-img-top" alt="...">
+                                <img src="{{ asset('storage/' . $konser->foto) }}" class="card-img-top" alt="..." style="height:200px; object-fit:cover;" >
                                 <div class="circle">
                                     <span class="date-text">
                                         {{ strtoupper(\Carbon\Carbon::parse($konser->tanggal_konser)->format('M')) }}<br>
