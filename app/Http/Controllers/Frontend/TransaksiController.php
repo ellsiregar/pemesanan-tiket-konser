@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Konser;
 use App\Models\Tiket;
-<<<<<<< HEAD
 use App\Models\Transaksi;
-=======
 use App\Models\Diskon;
->>>>>>> 92b374731a9672e4c410d1c57cd32d7c2379dbe4
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
