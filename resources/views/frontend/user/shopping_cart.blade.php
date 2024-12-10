@@ -71,15 +71,17 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><button class="btn btn-outline-danger btn-sm" onclick="removeItem(this)">X</button></td>
+                                    <td><button class="btn btn-outline-danger btn-sm"
+                                            onclick="removeItem(this)">X</button></td>
                                     <td>{{ $tiket->KategoriTiket->Konser->nama_konser }}</td>
                                     <td class="price">{{ $tiket->harga_tiket }}</td>
-                                    <td><input type="number" value="1" class="form-control form-control-sm quantity" style="width: 60px;" oninput="updateTotal(this)"></td>
+                                    <td><input type="number" value="1"
+                                            class="form-control form-control-sm quantity" style="width: 60px;"
+                                            oninput="updateTotal(this)"></td>
                                     <td class="total-price">{{ $tiket->harga_tiket }}</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-primary mt-3" onclick="updateCart()">Update Cart</button>
                     </div>
                 </div>
 
@@ -110,7 +112,7 @@
                         <h5>Discount Code</h5>
                         <div class="mb-3">
                             <input type="text" class="form-control" placeholder="Coupon Code">
-                            <button class="btn btn-primary mt-2" onclick="applyDiscount()">Apply Coupon</button>
+                            <button class="btn btn-primary mt-2">Apply Coupon</button>
                         </div>
                         <h5>Cart Total</h5>
                         <ul class="list-group">
@@ -128,18 +130,12 @@
                             </li>
                         </ul>
 
-                        <h5 class="mt-4">Payment Method</h5>
-                        <div class="payment-methods">
-                            <div class="card">
-                                <div class="card-body d-flex align-items-center">
-                                    <img src="{{ asset('assets/images/logos/Dana_logo.png') }}" alt="Dana">
-                                    <span>Dana</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <a href="" class="btn btn-danger mt-3 w-100">Check out</a>
-
+                        <form action="{{ route('user.checkout') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="id_tiket" value="{{ $tiket['id_tiket'] }}">
+                            <input type="hidden" name="amount" id="amount" value="">
+                            <button type="submit" onclick="syncTotal()" class="btn btn-danger mt-3 w-100">Check Out</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -153,59 +149,41 @@
                 var price = inputElement.closest('tr').querySelector('.price').innerText;
                 var totalPrice = price * quantity;
 
-                inputElement.closest('tr').querySelector('.total-price').innerText = totalPrice.toFixed(2);
-                updateCart();
-            }
+            inputElement.closest('tr').querySelector('.total-price').innerText = totalPrice.toFixed(2);
+            updateCart();
+        }
 
-            // Function to update the cart summary (Subtotal and Total)
-            function updateCart() {
-                var totalPrices = document.querySelectorAll('.total-price');
-                var subtotal = 0;
+        // Function to update the cart summary (Subtotal and Total)
+        function updateCart() {
+            var totalPrices = document.querySelectorAll('.total-price');
+            var subtotal = 0;
 
-                totalPrices.forEach(function(totalPrice) {
-                    subtotal += parseFloat(totalPrice.innerText);
-                });
+            totalPrices.forEach(function(totalPrice) {
+                subtotal += parseFloat(totalPrice.innerText);
+            });
 
-                document.getElementById('subtotal').innerText = subtotal.toFixed(2);
-                document.getElementById('total').innerText = subtotal.toFixed(2);
-            }
+            document.getElementById('subtotal').innerText = subtotal.toFixed(2);
+            document.getElementById('total').innerText = subtotal.toFixed(2);
+        }
 
-            // Function to remove an item from the cart
-            function removeItem(buttonElement) {
-                var row = buttonElement.closest('tr');
-                row.remove();
-                updateCart();
-            }
+        // Function to remove an item from the cart
+        function removeItem(buttonElement) {
+            var row = buttonElement.closest('tr');
+            row.remove();
+            updateCart();
+        }
 
-            // Function to apply discount
-            function applyDiscount() {
-                const couponInput = document.querySelector('input[placeholder="Coupon Code"]');
-                const couponCode = couponInput.value.trim();
-                const discount = discounts.find(d => d.diskon_kode === couponCode);
+        function syncTotal() {
+            // Ambil nilai dari elemen dengan id="total"
+            const totalValue = document.getElementById('total').innerText;
 
-                if (discount) {
-                    const subtotalElement = document.getElementById('subtotal');
-                    const discountElement = document.getElementById('discount');
-                    const totalElement = document.getElementById('total');
+            // Set nilai ke elemen dengan id="amount"
+            document.getElementById('amount').value = totalValue;
 
-                    // Ambil subtotal
-                    const subtotal = parseFloat(subtotalElement.innerText);
-
-                    // Hitung jumlah diskon
-                    const discountAmount = (subtotal * discount.persentase_diskon) / 100;
-
-                    // Hitung total setelah diskon
-                    const totalAfterDiscount = subtotal - discountAmount;
-
-                    // Update UI
-                    discountElement.innerText = discountAmount.toFixed(2);
-                    totalElement.innerText = totalAfterDiscount.toFixed(2);
-                    alert(`Diskon ${discount.persentase_diskon}% telah diterapkan!`);
-                } else {
-                    alert('Kode kupon tidak valid!');
-                }
-            }
-        </script>
+            // (Opsional) Periksa hasil di konsol
+            console.log("Value synced to amount:", totalValue);
+        }
+    </script>
 </body>
 
 </html>
