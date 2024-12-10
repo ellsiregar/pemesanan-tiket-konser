@@ -132,104 +132,80 @@
                         <div class="payment-methods">
                             <div class="card">
                                 <div class="card-body d-flex align-items-center">
-                                    <img src="{{ asset('assets/images/logos/paypal.png') }}" alt="PayPal">
-                                    <span>PayPal</span>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body d-flex align-items-center">
                                     <img src="{{ asset('assets/images/logos/Dana_logo.png') }}" alt="Dana">
                                     <span>Dana</span>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body d-flex align-items-center">
-                                    <img src="{{ asset('assets/images/logos/ovo.png') }}" alt="OVO">
-                                    <span>OVO</span>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body d-flex align-items-center">
-                                    <img src="{{ asset('assets/images/logos/Dana_logo.png') }}" alt="Bank BRI">
-                                    <span>Bank BRI</span>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body d-flex align-items-center">
-                                    <img src="{{ asset('assets/images/logos/bca.png') }}" alt="Bank BCA">
-                                    <span>Bank BCA</span>
                                 </div>
                             </div>
                         </div>
 
                         <a href="" class="btn btn-danger mt-3 w-100">Check out</a>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Function to update the total price for each ticket
-        function updateTotal(inputElement) {
-            var quantity = inputElement.value;
-            var price = inputElement.closest('tr').querySelector('.price').innerText;
-            var totalPrice = price * quantity;
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            // Function to update the total price for each ticket
+            function updateTotal(inputElement) {
+                var quantity = inputElement.value;
+                var price = inputElement.closest('tr').querySelector('.price').innerText;
+                var totalPrice = price * quantity;
 
-            inputElement.closest('tr').querySelector('.total-price').innerText = totalPrice.toFixed(2);
-            updateCart();
-        }
-
-        // Function to update the cart summary (Subtotal and Total)
-        function updateCart() {
-            var totalPrices = document.querySelectorAll('.total-price');
-            var subtotal = 0;
-
-            totalPrices.forEach(function(totalPrice) {
-                subtotal += parseFloat(totalPrice.innerText);
-            });
-
-            document.getElementById('subtotal').innerText = subtotal.toFixed(2);
-            document.getElementById('total').innerText = subtotal.toFixed(2);
-        }
-
-        // Function to remove an item from the cart
-        function removeItem(buttonElement) {
-            var row = buttonElement.closest('tr');
-            row.remove();
-            updateCart();
-        }
-
-        // Function to apply discount
-        function applyDiscount() {
-            const couponInput = document.querySelector('input[placeholder="Coupon Code"]');
-            const couponCode = couponInput.value.trim();
-            const discount = discounts.find(d => d.diskon_kode === couponCode);
-
-            if (discount) {
-                const subtotalElement = document.getElementById('subtotal');
-                const discountElement = document.getElementById('discount');
-                const totalElement = document.getElementById('total');
-
-                // Ambil subtotal
-                const subtotal = parseFloat(subtotalElement.innerText);
-
-                // Hitung jumlah diskon
-                const discountAmount = (subtotal * discount.persentase_diskon) / 100;
-
-                // Hitung total setelah diskon
-                const totalAfterDiscount = subtotal - discountAmount;
-
-                // Update UI
-                discountElement.innerText = discountAmount.toFixed(2);
-                totalElement.innerText = totalAfterDiscount.toFixed(2);
-                alert(`Diskon ${discount.persentase_diskon}% telah diterapkan!`);
-            } else {
-                alert('Kode kupon tidak valid!');
+                inputElement.closest('tr').querySelector('.total-price').innerText = totalPrice.toFixed(2);
+                updateCart();
             }
-        }
-    </script>
+
+            // Function to update the cart summary (Subtotal and Total)
+            function updateCart() {
+                var totalPrices = document.querySelectorAll('.total-price');
+                var subtotal = 0;
+
+                totalPrices.forEach(function(totalPrice) {
+                    subtotal += parseFloat(totalPrice.innerText);
+                });
+
+                document.getElementById('subtotal').innerText = subtotal.toFixed(2);
+                document.getElementById('total').innerText = subtotal.toFixed(2);
+            }
+
+            // Function to remove an item from the cart
+            function removeItem(buttonElement) {
+                var row = buttonElement.closest('tr');
+                row.remove();
+                updateCart();
+            }
+
+            // Function to apply discount
+            function applyDiscount() {
+                const couponInput = document.querySelector('input[placeholder="Coupon Code"]');
+                const couponCode = couponInput.value.trim();
+                const discount = discounts.find(d => d.diskon_kode === couponCode);
+
+                if (discount) {
+                    const subtotalElement = document.getElementById('subtotal');
+                    const discountElement = document.getElementById('discount');
+                    const totalElement = document.getElementById('total');
+
+                    // Ambil subtotal
+                    const subtotal = parseFloat(subtotalElement.innerText);
+
+                    // Hitung jumlah diskon
+                    const discountAmount = (subtotal * discount.persentase_diskon) / 100;
+
+                    // Hitung total setelah diskon
+                    const totalAfterDiscount = subtotal - discountAmount;
+
+                    // Update UI
+                    discountElement.innerText = discountAmount.toFixed(2);
+                    totalElement.innerText = totalAfterDiscount.toFixed(2);
+                    alert(`Diskon ${discount.persentase_diskon}% telah diterapkan!`);
+                } else {
+                    alert('Kode kupon tidak valid!');
+                }
+            }
+        </script>
 </body>
 
 </html>
