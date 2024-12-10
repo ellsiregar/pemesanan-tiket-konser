@@ -92,6 +92,5 @@ Route::middleware(['role:user'])->group(function(){
 
     Route::get('/about/transaksi/konser/{id}/tiket/{id_tiket}',[FrontendTransaksiController::class,"transaksi"])->name('user.transaksi');
 
-    Route::get('/user/checkout/konser/{id}/tiket/{id_tiket}',[FrontendTransaksiController::class,"checkout"])->name('user.checkout');
-
+    Route::post('/user/checkout',[FrontendTransaksiController::class,"checkout"])->name('user.checkout');
 });
