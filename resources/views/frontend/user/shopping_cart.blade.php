@@ -1,189 +1,242 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart - Tiket Konser</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Keranjang Tiket dengan Diskon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #f8f9fa;
         }
 
-        .card {
-            border: none;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        .cart-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .table thead th {
-            text-transform: uppercase;
-            font-size: 0.85rem;
+        .btn-outline-secondary:hover {
+            background-color: #f0f0f0;
         }
 
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
+        .total-price {
+            font-size: 1.2rem;
+            font-weight: bold;
         }
 
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
+        .discount-alert {
+            color: green;
         }
 
-        .btn-danger {
-            background-color: #dc3545;
-            border-color: #dc3545;
-        }
-
-        .btn-danger:hover {
-            background-color: #c82333;
-            border-color: #c82333;
-        }
-
-        .payment-methods .card {
-            margin-bottom: 10px;
-        }
-
-        .payment-methods img {
-            width: 40px;
-            margin-right: 10px;
+        .discount-error {
+            color: red;
         }
     </style>
 </head>
 
 <body>
     <div class="container my-5">
-        <div class="row">
-            <!-- Cart Section -->
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Remove</th>
-                                    <th scope="col">Event Name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><button class="btn btn-outline-danger btn-sm"
-                                            onclick="removeItem(this)">X</button></td>
-                                    <td>{{ $tiket->KategoriTiket->Konser->nama_konser }}</td>
-                                    <td class="price">{{ $tiket->harga_tiket }}</td>
-                                    <td><input type="number" value="1"
-                                            class="form-control form-control-sm quantity" style="width: 60px;"
-                                            oninput="updateTotal(this)"></td>
-                                    <td class="total-price">{{ $tiket->harga_tiket }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div class="cart-container">
+            <h1 class="text-center mb-4">Keranjang Tiket</h1>
 
-                <!-- Your Information Section -->
-                <h4 class="mt-4">Your Information</h4>
-                <div class="card p-3">
-                    <form id="orderForm">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name *</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Phone *</label>
-                            <input type="tel" id="phone" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email *</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                    </form>
+            <!-- Tabel Keranjang -->
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nama Konser</th>
+                        <th>Kategori Tiket</th>
+                        <th>Harga Satuan</th>
+                        <th>Tersedia</th>
+                        <th>Jumlah</th>
+                        <th>Total</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-body">
+                    <tr>
+                        <td>{{ $tiket->KategoriTiket->Konser->nama_konser }}</td>
+                        <td>{{ $tiket->KategoriTiket->nama_kategori }}</td>
+                        <td class="unit-price">Rp {{ number_format($tiket->harga_tiket, 0, ',', '.') }}</td>
+                        <td class="available">{{ $tiket->quantity }}</td>
+                        <td>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity(this, -1)">-</button>
+                            <span class="mx-2 quantity">1</span>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity(this, 1)">+</button>
+                        </td>
+                        <td class="item-total">Rp {{ number_format($tiket->harga_tiket, 0, ',', '.') }}</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" onclick="removeItem(this)">Hapus</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Input Diskon -->
+            <div class="mt-3">
+                <label for="discount-code" class="form-label">Masukkan Kode Diskon</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="discount-code" placeholder="Kode diskon">
+                    <button class="btn btn-primary" onclick="applyDiscount()">Terapkan</button>
                 </div>
+                <div id="discount-feedback" class="mt-2"></div>
             </div>
 
-            <!-- Payment Method Section -->
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5>Discount Code</h5>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Coupon Code">
-                            <button class="btn btn-primary mt-2">Apply Coupon</button>
-                        </div>
-                        <h5>Cart Total</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Subtotal</span>
-                                <span id="subtotal">{{ $tiket->harga_tiket }}</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Discount</span>
-                                <span id="discount">0</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Total</span>
-                                <span id="total">{{ $tiket->harga_tiket }}</span>
-                            </li>
-                        </ul>
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <h4>Potongan Diskon:</h4>
+                <span id="discount-amount" class="total-price">Rp 0</span>
+            </div>
 
-                        <form action="{{ route('user.checkout') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="id_tiket" value="{{ $tiket['id_tiket'] }}">
-                            <input type="hidden" name="amount" id="amount" value="">
-                            <button type="submit" onclick="syncTotal()" class="btn btn-danger mt-3 w-100">Check Out</button>
-                        </form>
-                    </div>
-                </div>
+            <!-- Total Harga -->
+            <div class="d-flex justify-content-between align-items-center">
+                <h4>Total Keseluruhan:</h4>
+                <span id="grand-total" class="total-price">Rp {{ number_format($tiket->harga_tiket, 0, ',', '.') }}</span>
+            </div>
+
+            <!-- Tombol Checkout -->
+            <div class="d-grid mt-4">
+                <form action="{{ route('user.checkout-process') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="id_tiket" value="{{ $tiket->id_tiket }}">
+                    <input type="hidden" name="amount" id="amount" value="{{ $tiket->harga_tiket }}">
+                    <button type="submit" class="btn btn-success btn-lg w-100">Lanjutkan ke Pembayaran</button>
+                </form>
             </div>
         </div>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-            // Function to update the total price for each ticket
-            function updateTotal(inputElement) {
-                var quantity = inputElement.value;
-                var price = inputElement.closest('tr').querySelector('.price').innerText;
-                var totalPrice = price * quantity;
+    <script>
+        let discountApplied = false;
 
-            inputElement.closest('tr').querySelector('.total-price').innerText = totalPrice.toFixed(2);
-            updateCart();
+        function parsePrice(priceText) {
+            return parseInt(priceText.replace(/\D/g, "")) || 0;
         }
 
-        // Function to update the cart summary (Subtotal and Total)
-        function updateCart() {
-            var totalPrices = document.querySelectorAll('.total-price');
-            var subtotal = 0;
+        function updateQuantity(button, delta) {
+            const row = button.closest("tr");
+            const quantityElement = row.querySelector(".quantity");
+            const availableElement = row.querySelector(".available");
+            const unitPriceElement = row.querySelector(".unit-price");
+            const itemTotalElement = row.querySelector(".item-total");
 
-            totalPrices.forEach(function(totalPrice) {
-                subtotal += parseFloat(totalPrice.innerText);
+            let quantity = parseInt(quantityElement.textContent);
+            const available = parseInt(availableElement.textContent);
+            const unitPrice = parsePrice(unitPriceElement.textContent);
+
+            if (delta > 0 && quantity >= available) {
+                alert("Jumlah tidak bisa melebihi stok yang tersedia!");
+                return;
+            }
+
+            quantity = Math.max(1, quantity + delta);
+            quantityElement.textContent = quantity;
+
+            const itemTotal = quantity * unitPrice;
+            itemTotalElement.textContent = `Rp ${itemTotal.toLocaleString()}`;
+
+            updateGrandTotal();
+        }
+
+        function removeItem(button) {
+            const row = button.closest("tr");
+            row.remove();
+            updateGrandTotal();
+        }
+
+        window.onload = function() {
+            // Inisialisasi nilai amount berdasarkan harga tiket
+            const initialPrice = parsePrice(document.querySelector(".unit-price").textContent);
+            const amountInput = document.querySelector("input[name='amount']");
+            amountInput.value = initialPrice; // Set nilai amount ke harga tiket
+
+            updateGrandTotal(); // Memperbarui total keseluruhan
+        };
+
+        function updateGrandTotal() {
+            const itemTotals = document.querySelectorAll(".item-total");
+            let grandTotal = 0;
+
+            itemTotals.forEach((item) => {
+                grandTotal += parsePrice(item.textContent);
             });
 
-            document.getElementById('subtotal').innerText = subtotal.toFixed(2);
-            document.getElementById('total').innerText = subtotal.toFixed(2);
+            document.getElementById("grand-total").textContent = `Rp ${grandTotal.toLocaleString()}`;
+
+            // Update nilai pada input hidden amount
+            const amountInput = document.querySelector("input[name='amount']");
+            amountInput.value = grandTotal;
+
+            if (discountApplied) {
+                discountApplied = false;
+                document.getElementById("discount-feedback").textContent = "";
+                document.getElementById("discount-amount").textContent = "Rp 0";
+            }
         }
 
-        // Function to remove an item from the cart
-        function removeItem(buttonElement) {
-            var row = buttonElement.closest('tr');
-            row.remove();
-            updateCart();
-        }
+        function applyDiscount() {
+            const code = document.getElementById("discount-code").value;
+            const grandTotalElement = document.getElementById("grand-total");
+            const discountAmountElement = document.getElementById("discount-amount");
+            const feedbackElement = document.getElementById("discount-feedback");
 
-        function syncTotal() {
-            // Ambil nilai dari elemen dengan id="total"
-            const totalValue = document.getElementById('total').innerText;
+            if (discountApplied) {
+                feedbackElement.textContent = "Diskon sudah diterapkan!";
+                feedbackElement.className = "discount-alert";
+                return;
+            }
 
-            // Set nilai ke elemen dengan id="amount"
-            document.getElementById('amount').value = totalValue;
+            fetch('/apply-discount', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        kode_diskon: code
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Membersihkan simbol '%' dari persentase diskon
+                        const discountPercentageText = data.persentase_diskon.replace('%', '');
+                        const discountPercentage = parseFloat(discountPercentageText);
 
-            // (Opsional) Periksa hasil di konsol
-            console.log("Value synced to amount:", totalValue);
+                        let grandTotal = parsePrice(grandTotalElement.textContent);
+                        const discountAmount = Math.floor((grandTotal * discountPercentage) / 100);
+
+                        // Hitung ulang total setelah diskon
+                        grandTotal -= discountAmount;
+
+                        // Update elemen DOM
+                        grandTotalElement.textContent = `Rp ${grandTotal.toLocaleString()}`;
+                        discountAmountElement.textContent = `Rp ${discountAmount.toLocaleString()}`;
+
+                        // Mengupdate nilai pada input hidden amount setelah diskon
+                        const amountInput = document.querySelector("input[name='amount']");
+                        amountInput.value = grandTotal;
+
+                        feedbackElement.textContent = data.message;
+                        feedbackElement.className = "discount-alert";
+                        discountApplied = true;
+                    } else {
+                        feedbackElement.textContent = data.message;
+                        feedbackElement.className = "discount-error";
+                    }
+                })
+                .catch(() => {
+                    feedbackElement.textContent = "Terjadi kesalahan saat memproses diskon.";
+                    feedbackElement.className = "discount-error";
+                });
         }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

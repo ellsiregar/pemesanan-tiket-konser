@@ -9,6 +9,8 @@ use App\Models\Transaksi;
 use App\Models\Diskon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Midtrans\Config;
+use Midtrans\Snap;
 
 class TransaksiController extends Controller
 {
@@ -31,7 +33,28 @@ class TransaksiController extends Controller
         return view('frontend.user.shopping_cart', compact('konser', 'tiket'));
     }
 
-    public function checkout(Request $request)
+    public function applyDiscount(Request $request)
+    {
+        $kodeDiskon = $request->input('kode_diskon');
+
+        // Cek apakah kode diskon ada di database
+        $diskon = Diskon::where('diskon_kode', $kodeDiskon)->first();
+
+        if ($diskon) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Diskon berhasil diterapkan!',
+                'persentase_diskon' => $diskon->persentase_diskon,
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kode diskon tidak valid!',
+            ]);
+        }
+    }
+
+    public function process(Request $request)
     {
         $data = $request->all();
 
@@ -45,30 +68,46 @@ class TransaksiController extends Controller
         ]);
 
         // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = config('midtrans.serverKey');
+        Config::$serverKey = config('midtrans.serverKey');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
+        Config::$isProduction = false;
         // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
+        Config::$isSanitized = true;
         // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
+        Config::$is3ds = true;
 
         $params = array(
             'transaction_details' => array(
                 'order_id' => rand(),
                 'gross_amount' => $data['amount'],
             ),
-            'custemer_details' => array(
+            'customer_details' => array(
                 'first_name' => Auth::user()->name,
                 'email' => Auth::user()->email,
             ),
         );
 
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
+        $snapToken = Snap::getSnapToken($params);
 
         $transaksi->snap_token = $snapToken;
         $transaksi->save();
 
-        return redirect()->route('', $transaksi->id_transaksi);
+        return redirect()->route('user.checkout', $transaksi->id_transaksi);
+    }
+
+    public function checkout(Transaksi $transaksi)
+    {
+        $tikets = Tiket::all();
+        $tiket = collect($tikets)->firstWhere('id_tiket', $transaksi->id_tiket);
+
+        return view('frontend.user.checkout',  compact('transaksi', 'tiket'));
+    }
+
+    public function success(Transaksi $transaksi)
+    {
+        $transaksi->payment_status = 'completed';
+        $transaksi->save();
+
+        return view('frontend.user.success', compact('transaksi'));
     }
 }
