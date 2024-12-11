@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function dashboard()
+    public function home()
     {
         $konsers = Konser::all();
 
@@ -26,7 +26,12 @@ class UserController extends Controller
             $query->where('nama_kategori', 'VVIP');
         })->orderBy('harga_tiket', 'desc')->first();
 
-        return view('frontend.user.dashboard', compact('konsers', 'tiketTermurah', 'tiketTermahal'));
+        return view('frontend.user.home', compact('konsers', 'tiketTermurah', 'tiketTermahal'));
+    }
+
+    public function about()
+    {
+        return view('frontend.user.about');
     }
 
     public function aboutTiketKonser($id_konser)

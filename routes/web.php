@@ -14,30 +14,24 @@ use App\Http\Controllers\Frontend\TransaksiController as FrontendTransaksiContro
 use App\Http\Controllers\Frontend\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('#', function () {
-    return view('welcome');
-});
+Route::get('/', [UserController::class, "home"])->name('home');
+Route::get('/about', [UserController::class, "about"])->name('about');
 
 Route::middleware(['guest:admin', 'guest:user'])->group(function() {
-    route::get('/admin/login', [UserLoginController::class, "login"])->name('admin.login');
-    route::post('/admin/submit', [UserLoginController::class, "submit"])->name('admin.UserSubmit');
+    Route::get('/admin/login', [UserLoginController::class, "login"])->name('admin.login');
+    Route::post('/admin/submit', [UserLoginController::class, "submit"])->name('admin.UserSubmit');
 
-
-    Route::get('/', [UserLoginController::class, 'loginUser'])->name('user.login');
+    Route::get('/user/login', [UserLoginController::class, 'loginUser'])->name('user.login');
     Route::post('/user/submit', [UserLoginController::class, 'submit'])->name('user.submit');
     Route::get('/user/register', [UserLoginController::class, 'register'])->name('user.register');
     Route::post('/user/register', [UserLoginController::class, 'RegisterSubmit'])->name('user.register.submit');
-
 });
-
-
 
 Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::put('/admin/profile/update', [AdminController::class, 'update'])->name('admin.profile.update');
-
 
     Route::get('/admin/konser',[KonserController::class,"konser"])->name('konser');
     Route::get('/konser/create',[KonserController::class, "create"])->name('konser_create');
@@ -83,7 +77,6 @@ Route::middleware(['role:admin'])->group(function () {
 });
 
 Route::middleware(['role:user'])->group(function(){
-    Route::get('/user/dashboard',[UserController::class,"dashboard"])->name('user.dashboard');
     Route::get('/user/logout',[UserController::class,"logout"])->name('user.logout');
     Route::get('/user/profile',[UserController::class,"profileUser"])->name('user.profile');
     Route::put('/user/profile',[UserController::class,"updateUser"])->name('user.profile.update');
