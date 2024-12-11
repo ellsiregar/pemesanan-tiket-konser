@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Konser;
+use App\Models\Reviews;
 use App\Models\Tiket;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -39,9 +41,15 @@ class UserController extends Controller
             $query->where('id_konser', $id_konser);
         })->with('kategoriTiket.konser')->get();
 
+        $concertDate = Carbon::parse($konser->tanggal_konser);
 
+        // Ambil data review terkait konser
+        $reviews = Reviews::where('id_konser', $id_konser)->with('user')->get();
+        if ($reviews->isEmpty()) {
+            $reviews = collect(); // Koleksi kosong
+        }
 
-        return view('frontend.user.about_tiket_konser', compact('konser', 'tikets'));
+        return view('frontend.user.about_tiket_konser', compact('konser', 'tikets', 'concertDate', 'reviews'));
     }
 
     public function logout(Request $request)

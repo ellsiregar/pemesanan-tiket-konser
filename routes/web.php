@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\SeatAllocationsController;
 use App\Http\Controllers\Backend\TiketController;
 use App\Http\Controllers\Backend\TiketDiskonController;
 use App\Http\Controllers\Backend\TransaksiController;
+use App\Http\Controllers\Frontend\ReviewsController as FrontendReviewsController;
 use App\Http\Controllers\Frontend\TransaksiController as FrontendTransaksiController;
 use App\Http\Controllers\Frontend\UserController;
 use Illuminate\Support\Facades\Route;
@@ -97,4 +98,7 @@ Route::middleware(['role:user'])->group(function(){
     Route::post('/user/checkout',[FrontendTransaksiController::class,"process"])->name('user.checkout-process');
     Route::get('/user/checkout/{transaksi}',[FrontendTransaksiController::class,"checkout"])->name('user.checkout');
     Route::get('/user/checkout/success/{transaksi}',[FrontendTransaksiController::class,"success"])->name('user.checkout-success');
+
+    Route::post('/submit-review', [FrontendReviewsController::class, 'submitReview'])->name('user.submitReview');
+
 });

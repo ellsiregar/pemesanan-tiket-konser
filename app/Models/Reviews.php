@@ -15,7 +15,7 @@ class Reviews extends Model
         'users_id',
         'rating',
         'comment',
-        'riview_date',
+        'review_date',
     ];
 
     public function konser()

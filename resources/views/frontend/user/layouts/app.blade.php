@@ -19,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
     <!-- Icons css  (Mandatory in All Pages) -->
     <link href="{{ asset('assets_main/css/icons.min.css') }}" rel="stylesheet" type="text/css">
@@ -52,7 +53,7 @@
                             id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-circle me-2"
                                 style="width: 40px; height: 40px;">
-                            <span class="fw-bold">{{Auth::user()->name}}</span>
+                            <span class="fw-bold">{{ Auth::user()->name }}</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                             <li><a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a></li>

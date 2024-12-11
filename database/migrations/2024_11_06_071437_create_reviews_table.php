@@ -30,7 +30,7 @@ return new class extends Migration
 
             $table->integer('rating');
             $table->text('comment');
-            $table->timestamp('riview_date');
+            $table->timestamp('review_date');
 
             $table->timestamps();
         });
