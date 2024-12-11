@@ -18,15 +18,15 @@
                     <table class="table text-nowrap align-middle mb-0" id="konser">
                         <thead>
                             <tr class="border-2 border-bottom border-primary border-0">
-                                <th scope="col">no</th>
-                                <th scope="col">nama konser</th>
-                                <th scope="col" >artis/band</th>
-                                <th scope="col" >lokasi</th>
-                                <th scope="col" >tanggal konser</th>
-                                <th scope="col" >waktu konser</th>
-                                <th scope="col" >deskripsi</th>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama Konser</th>
+                                <th scope="col">Artis/Band</th>
+                                <th scope="col">Lokasi</th>
+                                <th scope="col">Tanggal Konser</th>
+                                <th scope="col">Waktu Konser</th>
+                                <th scope="col">Deskripsi</th>
                                 <th scope="col">Foto</th>
-                                <th scope="col" class="text-center">actions</th>
+                                <th scope="col" class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">

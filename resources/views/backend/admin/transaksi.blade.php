@@ -18,11 +18,11 @@
                     <thead>
                         <tr class="border-2 border-bottom border-primary border-0">
                             <th scope="col">No</th>
-                            <th scope="col">id tiket</th>
-                            <th scope="col">payment method</th>
-                            <th scope="col">payment status</th>
-                            <th scope="col">transaction_date</th>
-                            <th scope="col">amount</th>
+                            <th scope="col">Tiket</th>
+                            <th scope="col">Payment Method</th>
+                            <th scope="col">Payment Status</th>
+                            <th scope="col">Transaction Date</th>
+                            <th scope="col">Amount</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">

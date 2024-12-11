@@ -18,11 +18,11 @@
                     <thead>
                         <tr class="border-2 border-bottom border-primary border-0">
                             <th scope="col">No</th>
-                            <th scope="col">konser</th>
-                            <th scope="col">user</th>
-                            <th scope="col">rating</th>
-                            <th scope="col">comment</th>
-                            <th scope="col">review date</th>
+                            <th scope="col">Konser</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">Comment</th>
+                            <th scope="col">Review Date</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">

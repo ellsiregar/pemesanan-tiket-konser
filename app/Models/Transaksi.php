@@ -10,11 +10,13 @@ class Transaksi extends Model
     protected $primaryKey = 'id_transaksi';
 
     protected $fillable = [
-        'order_id',
+        'users_id',
+        'id_tiket',
         'payment_method',
         'payment_status',
-        'transaksi_date',
+        'transaction_date',
         'amount',
+        'snap_token',
     ];
 
     public function tiket()

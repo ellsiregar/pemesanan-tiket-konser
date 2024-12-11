@@ -18,9 +18,9 @@
                         <thead>
                             <tr class="border-2 border-bottom border-primary border-0">
                                 <th scope="col">No</th>
-                                <th scope="col">tiket</th>
-                                <th scope="col">diskon</th>
-                                <th scope="col">waktu digunakan</th>
+                                <th scope="col">Tiket</th>
+                                <th scope="col">Diskon</th>
+                                <th scope="col">Waktu Digunakan</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">

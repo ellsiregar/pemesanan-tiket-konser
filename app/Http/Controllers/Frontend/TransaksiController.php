@@ -7,6 +7,9 @@ use App\Models\Tiket;
 use App\Models\Transaksi;
 use App\Models\Diskon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Midtrans\Config;
+use Midtrans\Snap;
 
 class TransaksiController extends Controller
 {
@@ -26,32 +29,84 @@ class TransaksiController extends Controller
             ->with('kategoriTiket.konser')
             ->first(); // Gunakan `first()` jika hanya satu tiket yang diinginkan
 
-        $diskons = Diskon::all(['diskon_kode', 'persentase_diskon']);
-        // Konversi persentase_diskon menjadi angka tanpa simbol %
-        $diskons = $diskons->map(function ($diskon) {
-            $diskon->persentase_diskon = (int) filter_var($diskon->persentase_diskon, FILTER_SANITIZE_NUMBER_INT);
-            return $diskon;
-        });
-
-        return view('frontend.user.shopping_cart', compact('konser', 'tiket', 'diskons'));
+        return view('frontend.user.shopping_cart', compact('konser', 'tiket'));
     }
 
-    public function chekout(Request $request)
+    public function applyDiscount(Request $request)
     {
+        $kodeDiskon = $request->input('kode_diskon');
 
-        $request->validate([
-            'nama' => 'required|string',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|min:10',
-        ]);
+        // Cek apakah kode diskon ada di database
+        $diskon = Diskon::where('diskon_kode', $kodeDiskon)->first();
+
+        if ($diskon) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Diskon berhasil diterapkan!',
+                'persentase_diskon' => $diskon->persentase_diskon,
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kode diskon tidak valid!',
+            ]);
+        }
+    }
+
+    public function process(Request $request)
+    {
+        $data = $request->all();
 
         $transaksi = Transaksi::create([
-            'nama'=> $request->nama,
-            'email' => $request->email,
-            'phone' => $request->phone
+            'users_id' => Auth::user()->users_id,
+            'id_tiket' => $data['id_tiket'],
+            'payment_method' => 'bitcoin',
+            'amount' => $data['amount'],
+            'payment_status' => 'pending',
+            'transaction_date' => now(),
         ]);
-        return view('', compact('transaksi'));
 
+        // Set your Merchant Server Key
+        Config::$serverKey = config('midtrans.serverKey');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        Config::$isProduction = false;
+        // Set sanitization on (default)
+        Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => rand(),
+                'gross_amount' => $data['amount'],
+            ),
+            'customer_details' => array(
+                'first_name' => Auth::user()->name,
+                'email' => Auth::user()->email,
+            ),
+        );
+
+        $snapToken = Snap::getSnapToken($params);
+
+        $transaksi->snap_token = $snapToken;
+        $transaksi->save();
+
+        return redirect()->route('user.checkout', $transaksi->id_transaksi);
     }
 
+    public function checkout(Transaksi $transaksi)
+    {
+        $tikets = Tiket::all();
+        $tiket = collect($tikets)->firstWhere('id_tiket', $transaksi->id_tiket);
+
+        return view('frontend.user.checkout',  compact('transaksi', 'tiket'));
+    }
+
+    public function success(Transaksi $transaksi)
+    {
+        $transaksi->payment_status = 'completed';
+        $transaksi->save();
+
+        return view('frontend.user.success', compact('transaksi'));
+    }
 }
