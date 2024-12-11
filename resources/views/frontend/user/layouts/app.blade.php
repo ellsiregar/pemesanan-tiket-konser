@@ -45,23 +45,39 @@
         <!-- Start Page Content here -->
         <div class="page-content">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm" style="padding: 25px;">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3 px-3">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ route('user.dashboard') }}">Dashboard</a>
-                    <div class="dropdown ms-auto">
-                        <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button"
-                            id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-circle me-2"
-                                style="width: 40px; height: 40px;">
-                            <span class="fw-bold">{{ Auth::user()->name }}</span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                            <li><a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a></li>
-                        </ul>
+                    <!-- Logo -->
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        <strong class="text-primary">SoundPass</strong>
+                    </a>
+                    <!-- Menu Links (tengah) -->
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Konser</a>
+                        </li>
+                    </ul>
+
+                    <!-- Right Menu -->
+                    <div class="d-flex align-items-center">
+                        <!-- Profile Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button"
+                                id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-circle me-2"
+                                    style="width: 40px; height: 40px;">
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </nav>
