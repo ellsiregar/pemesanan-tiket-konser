@@ -14,7 +14,7 @@
             background-position: center;
             color: white;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-            height: 532px;
+            height: 632px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -69,7 +69,7 @@
         }
 
         .content-section {
-            padding: 60px 0;
+            padding: 60px;
         }
 
         .team img {
@@ -84,7 +84,7 @@
 <body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="50" tabindex="0" id="home">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding: 5px 60px;">
             <div class="logo-container">
                 <img src="{{ asset('assets/images/logos/music.png') }}" alt="SoundPass Logo" class="logo">
                 <a class="navbar-brand" href="#">SoundPass</a>
@@ -141,25 +141,25 @@
 
     <!-- Team Section -->
     <div class="container-fluid content-section text-center" id="team">
-        <h2>Meet Our Team</h2>
+        <h2 class="mb-4">Meet Our Team</h2>
         <div class="row justify-content-center">
             <div class="col-md-3 team">
-                <img src="{{ asset('assets/team1.jpg') }}" alt="Team Member 1" class="img-fluid">
+                <img src="{{ asset('assets_main/images/users/avatar-1.jpg') }}" alt="Team Member 1" class="img-fluid">
                 <h5 class="mt-3">Raphy Ahmad S.P</h5>
                 <p>Web Development</p>
             </div>
             <div class="col-md-3 team">
-                <img src="{{ asset('assets/team2.jpg') }}" alt="Team Member 2" class="img-fluid">
+                <img src="{{ asset('assets_main/images/users/avatar-5.jpg') }}" alt="Team Member 2" class="img-fluid">
                 <h5 class="mt-3">Elisabet Siregar</h5>
                 <p>Web Development</p>
             </div>
             <div class="col-md-3 team">
-                <img src="{{ asset('assets/team3.jpg') }}" alt="Team Member 3" class="img-fluid">
+                <img src="{{ asset('assets_main/images/users/avatar-8.jpg') }}" alt="Team Member 3" class="img-fluid">
                 <h5 class="mt-3">Dian Anggraini</h5>
                 <p>Web Development</p>
             </div>
             <div class="col-md-3 team">
-                <img src="{{ asset('assets/team4.jpg') }}" alt="Team Member 4" class="img-fluid">
+                <img src="{{ asset('assets_main/images/users/avatar-9.jpg') }}" alt="Team Member 4" class="img-fluid">
                 <h5 class="mt-3">Reva Salsa Nabila</h5>
                 <p>Web Development</p>
             </div>
@@ -167,7 +167,7 @@
     </div>
 
     <!-- Concerts Section -->
-    <div class="container-fluid py-5" id="concerts">
+    <div class="container-fluid content-section" id="concerts">
         <h2 class="text-center mb-4">Upcoming Concerts</h2>
         <div id="concertCarousel" class="carousel slide" data-bs-ride="carousel">
             <!-- Indicators -->
@@ -188,7 +188,7 @@
                                 <div class="col-md-4">
                                     <div class="card shadow">
                                         <img src="{{ asset('storage/' . $konser->foto) }}" class="card-img-top"
-                                            alt="Concert {{ $konser->id }}">
+                                            alt="Concert {{ $konser->id_konser }}">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $konser->nama_konser }}</h5>
                                             <p class="card-text">{{ Str::limit($konser->deskripsi, 100, '...') }}</p>
@@ -215,6 +215,8 @@
                     Next <span class="ms-2">&#8594;</span>
                 </button>
             </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-light py-4">
