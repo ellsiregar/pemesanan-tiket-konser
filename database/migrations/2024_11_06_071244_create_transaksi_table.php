@@ -20,7 +20,6 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->string('payment_method');
             $table->enum('payment_status', ['pending', 'completed', 'failed']);
             $table->timestamp('transaction_date');
             $table->integer('amount');

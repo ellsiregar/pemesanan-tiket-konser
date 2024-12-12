@@ -45,7 +45,7 @@ class UserLoginController extends Controller
             if ($user->role === 'admin') {
                 return redirect()->route('admin.dashboard');
             } elseif ($user->role === 'user') {
-                return redirect()->route('user.dashboard');
+                return redirect()->route('home');
             }
         }
 

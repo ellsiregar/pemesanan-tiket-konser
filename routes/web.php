@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UserController::class, "home"])->name('home');
 Route::get('/about', [UserController::class, "about"])->name('about');
+Route::get('/user/about/tiket/konser/{id}',[UserController::class,"aboutTiketKonser"])->name('user.aboutTiket.konser');
 
 Route::middleware(['guest:admin', 'guest:user'])->group(function() {
     Route::get('/admin/login', [UserLoginController::class, "login"])->name('admin.login');
@@ -82,8 +83,6 @@ Route::middleware(['role:user'])->group(function(){
     Route::get('/user/profile',[UserController::class,"profileUser"])->name('user.profile');
     Route::put('/user/profile',[UserController::class,"updateUser"])->name('user.profile.update');
 
-    Route::get('/user/about/tiket/konser/{id}',[UserController::class,"aboutTiketKonser"])->name('user.aboutTiket.konser');
-
     Route::get('/about/transaksi/konser/{id}/tiket/{id_tiket}',[FrontendTransaksiController::class,"transaksi"])->name('user.transaksi');
 
     Route::post('/apply-discount', [FrontendTransaksiController::class, 'applyDiscount']);
@@ -93,5 +92,9 @@ Route::middleware(['role:user'])->group(function(){
     Route::get('/user/checkout/success/{transaksi}',[FrontendTransaksiController::class,"success"])->name('user.checkout-success');
 
     Route::post('/submit-review', [FrontendReviewsController::class, 'submitReview'])->name('user.submitReview');
+
+    Route::get('/user/history', [UserController::class, 'history'])->name('user.history');
+    Route::get('/user/history/delete{transaksi}', [UserController::class, 'deleteHistory'])->name('user.delete');
+
 
 });

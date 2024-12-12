@@ -28,14 +28,60 @@
     <link href="{{ asset('assets_main/css/app.min.css') }}" rel="stylesheet" type="text/css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-        .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #003366, #1a1a1a);
+            color: white;
+            padding: 40px 0;
         }
 
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        footer h5 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        footer a {
+            color: #e91e63;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-link li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        .footer-link li a {
+            color: #e91e63;
+            font-size: 14px;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .event-header h1 {
+                font-size: 24px;
+            }
+
+            footer .row {
+                text-align: center;
+            }
+
+            .card.p-3:hover {
+                transform: scale(1.05);
+                /* Efek memperbesar sedikit */
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+                /* Bayangan lebih jelas */
+                transition: all 0.3s ease;
+                /* Transisi halus */
+                cursor: pointer;
+                /* Ubah kursor menjadi pointer */
+            }
         }
     </style>
 </head>
@@ -44,82 +90,18 @@
     <div class="wrapper">
         <!-- Start Page Content here -->
         <div class="page-content">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3 px-3">
-                <div class="container-fluid">
-                    <!-- Logo -->
-                    <a class="navbar-brand" href="{{ route('home') }}">
-                        <strong class="text-primary">SoundPass</strong>
-                    </a>
-                    <!-- Menu Links (tengah) -->
-                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Konser</a>
-                        </li>
-                    </ul>
-
-                    <!-- Right Menu -->
-                    <div class="d-flex align-items-center">
-                        <!-- Profile Dropdown -->
-                        <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button"
-                                id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-circle me-2"
-                                    style="width: 40px; height: 40px;">
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                                <li><a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
             <main>
                 @yield('content')
             </main>
 
-            <!-- Footer Start -->
-            <footer class="footer bg-default-100 flex items-center py-5">
-                <div class="container flex md:justify-between justify-center w-full gap-4">
-                    <div>
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script> © Minimage
-                    </div>
-                    <div class="md:flex hidden gap-2 item-center md:justify-end">
-                        Design &amp; Develop by<a href="#" class="text-primary">MyraStudio</a>
-                    </div>
+            <!-- Footer -->
+            <footer class="text-center text-lg-start">
+                <div class="container-fluid text-center">
+                    <p>&copy; 2024 SoundPass. All rights reserved.</p>
                 </div>
             </footer>
-
-            <!-- Contact Footer Start -->
-            <footer class="footer bg-default-900 py-5">
-                <div class="container flex md:justify-between justify-center w-full gap-4">
-                    <div>
-                        <h4 class="text-white text-lg font-semibold">Contact Us</h4>
-                        <p class="text-sm text-gray-400">For inquiries, feel free to reach out to us:</p>
-                        <ul class="text-sm text-gray-400">
-                            <li>Email: <a href="mailto:contact@minimage.com"
-                                    class="text-primary">contact@minimage.com</a></li>
-                            <li>Phone: <a href="tel:+123456789" class="text-primary">+1 234 567 89</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </footer>
-            <!-- Contact Footer End -->
-
-            <!-- Footer End -->
-
         </div>
         <!-- End Page content -->
-
     </div>
 
     <!-- Plugin Js (Mandatory in All Pages) -->

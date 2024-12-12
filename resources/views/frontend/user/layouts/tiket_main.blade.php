@@ -111,36 +111,8 @@
 
     <!-- Footer -->
     <footer class="text-center text-lg-start">
-        <div class="container">
-            <div class="row">
-                <!-- Kontak -->
-                <div class="col-lg-4 mb-4">
-                    <h5>Contact</h5>
-                    <p>Email: <a href="mailto:info@event.com">info@event.com</a></p>
-                    <p>Phone: +123-456-7890</p>
-                    <p>Address: 123 Event Street, New York, USA</p>
-                </div>
-
-                <!-- Tautan Cepat -->
-                <div class="col-lg-4 mb-4">
-                    <h5>Quick Links</h5>
-                    <ul class="footer-link">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Services</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                    </ul>
-                </div>
-
-                <!-- Sosial Media -->
-                <div class="col-lg-4 mb-4">
-                    <h5>Follow Us</h5>
-                    <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="me-3"><i class="bi bi-youtube"></i></a>
-                </div>
-            </div>
+        <div class="container-fluid text-center">
+            <p>&copy; 2024 SoundPass. All rights reserved.</p>
         </div>
     </footer>
 

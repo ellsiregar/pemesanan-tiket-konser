@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Konser;
 use App\Models\Reviews;
 use App\Models\Tiket;
+use App\Models\Transaksi;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -62,7 +63,7 @@ class UserController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return view('auth.UserLogin');
+        return redirect()->route('home');
     }
 
     public function profileUser()
@@ -97,4 +98,32 @@ class UserController extends Controller
 
         return redirect()->route('user.profile')->with('success', 'Data Anda Berhasil di Update');
     }
+
+    public function history()
+    {
+        // Mendapatkan user yang sedang login
+        $user = Auth::user();
+
+        $transaksi = Transaksi::where('users_id', $user->users_id)->get();
+
+        return view('frontend.user.history', compact('transaksi'));
+    }
+
+    public function deleteHistory($id_transaksi) {
+        $user = Auth::user();
+        $transaksi = Transaksi::where('users_id', $user->users_id)->get();
+
+        $transaksi = Transaksi::find($id_transaksi);
+        $transaksi->delete();
+
+    if (!$transaksi) {
+        return redirect()->back()->with('error', 'Data transaksi tidak ditemukan.');
+    }
+
+    $transaksi->delete();
+
+    return redirect()->back()->with('success', 'Data transaksi berhasil dihapus.');
+
+    }
+
 }

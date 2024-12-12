@@ -108,7 +108,7 @@
             </div>
 
             <!-- Tombol Kembali ke Beranda -->
-            <a href="{{ route('user.dashboard') }}" class="btn btn-primary">Kembali ke Beranda</a>
+            <a href="{{ route('user.history') }}" class="btn btn-primary">Kembali ke Beranda</a>
         </div>
     </div>
 

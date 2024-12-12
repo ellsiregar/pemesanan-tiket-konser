@@ -60,7 +60,6 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::create([
             'users_id' => Auth::user()->users_id,
             'id_tiket' => $data['id_tiket'],
-            'payment_method' => 'bitcoin',
             'amount' => $data['amount'],
             'payment_status' => 'pending',
             'transaction_date' => now(),

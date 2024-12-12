@@ -12,7 +12,6 @@ class Transaksi extends Model
     protected $fillable = [
         'users_id',
         'id_tiket',
-        'payment_method',
         'payment_status',
         'transaction_date',
         'amount',
@@ -24,10 +23,7 @@ class Transaksi extends Model
         return $this->belongsTo(Tiket::class, 'id_tiket', 'id_tiket');
     }
 
-    public function seatAllocations()
-    {
-        return $this->hasMany(SeatAllocations::class, 'id_transaksi', 'id_transaksi');
-    }
+   
 
     public function User()
     {
