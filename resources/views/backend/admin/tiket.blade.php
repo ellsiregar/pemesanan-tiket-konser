@@ -33,7 +33,6 @@
                             <td>{{ $tiket->quantity }}</td>
                             <td>{{ $tiket->harga_tiket }}</td>
                             <td class="text-center">
-                                <a href="{{ route('seat', $tiket->id_tiket) }}" class="btn btn-primary btn-sm">Seat</a>
                                 <a href="{{route('tiket_edit', $tiket->id_tiket)}}" class="btn btn-warning btn-sm">Edit</a>
                                 <a href="{{route('tiket_delete', $tiket->id_tiket)}}" onclick="return confirm('Yakin ingin hapus data?')" class="btn btn-danger btn-sm">Delete</a>
                             </td>

@@ -158,8 +158,8 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @if(Auth::user())
                             <li><a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a></li>
-                            <li><a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a></li>
                             <li><a class="dropdown-item" href="{{ route('user.history') }}">History</a></li>
+                            <li><a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a></li>
                             @else
                             <li><a class="dropdown-item" href="{{ route('user.login') }}">Login</a></li>
                             @endif

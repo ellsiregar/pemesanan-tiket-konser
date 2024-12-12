@@ -54,7 +54,6 @@ class DiskonController extends Controller
         ]);
 
         $Diskon->update([
-            'diskon_kode' => 'DSK-' . strtoupper(uniqid()), // Auto generate
             'persentase_diskon' => $request->persentase_diskon,
             'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa,
         ]);

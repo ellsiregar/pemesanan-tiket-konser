@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Image Gallery | Minimage - Tailwind Image Gallery Template</title>
+    <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
     <meta content="MyraStudio" name="author">
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets_main/images/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/music.png') }}" />
 
     <!-- glightbox css -->
     <link rel="stylesheet" href="{{ asset('assets_main/libs/glightbox/css/glightbox.min.css') }}">

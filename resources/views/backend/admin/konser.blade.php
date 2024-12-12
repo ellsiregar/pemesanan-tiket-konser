@@ -35,10 +35,10 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{$konser->nama_konser}}</td>
                                 <td>{{$konser->nama_artis_band}}</td>
-                                <td>{{$konser->lokasi}}</td>
+                                <td>{{ Str::limit($konser->lokasi, 20, '...') }}</td>
                                 <td>{{$konser->tanggal_konser}}</td>
                                 <td>{{$konser->waktu_konser}}</td>
-                                <td>{{$konser->deskripsi}}</td>
+                                <td>{{ Str::limit($konser->deskripsi, 20, '...') }}</td>
                                 <td>
                                     <img src="{{ asset('storage/' . $konser->foto) }}" alt="" height="30">
                                 </td>

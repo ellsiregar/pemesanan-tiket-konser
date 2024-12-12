@@ -1,6 +1,6 @@
 @extends('backend.admin.layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Tambah Konser')
 
 @section('content')
 

@@ -21,7 +21,7 @@ class AdminController extends Controller
         $TiketTerjual = Transaksi::count('id_tiket');
         // Hitung pendapatan berdasarkan jumlah tiket terjual dan harga tiket
         $pendapatan = Transaksi::join('tiket', 'transaksi.id_tiket', '=', 'tiket.id_tiket')
-            ->sum(DB::raw('tiket.harga_tiket * transaksi.amount'));
+            ->sum(DB::raw('transaksi.amount'));
 
         return view('backend.admin.dashboard', compact('totalKonser', 'PenggunaTerdaftar', 'TiketTerjual', 'pendapatan'));
     }

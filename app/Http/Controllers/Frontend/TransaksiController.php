@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
+
 use App\Http\Controllers\Controller;
 use App\Models\Konser;
 use App\Models\Tiket;
@@ -40,6 +41,15 @@ class TransaksiController extends Controller
         $diskon = Diskon::where('diskon_kode', $kodeDiskon)->first();
 
         if ($diskon) {
+            // Cek apakah diskon telah melewati tanggal kadaluarsa
+            $tanggalKadaluarsa = $diskon->tanggal_kadaluarsa;
+            if ($tanggalKadaluarsa < now()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Kode diskon telah kadaluarsa!',
+                ]);
+            }
+
             return response()->json([
                 'success' => true,
                 'message' => 'Diskon berhasil diterapkan!',
@@ -64,6 +74,18 @@ class TransaksiController extends Controller
             'payment_status' => 'pending',
             'transaction_date' => now(),
         ]);
+
+        // Ambil tiket berdasarkan id
+        $tiket = Tiket::find($data['id_tiket']);
+
+        // Pastikan kuantitas tiket yang diminta tidak lebih dari stok yang tersedia
+        if ($tiket->quantity < $data['ticket_quantity']) {
+            return redirect()->back()->with('error', 'Stok tiket tidak mencukupi.');
+        }
+
+        // Kurangi kuantitas tiket berdasarkan jumlah yang dibeli
+        $tiket->quantity -= $data['ticket_quantity'];
+        $tiket->save(); // Simpan perubahan kuantitas tiket
 
         // Set your Merchant Server Key
         Config::$serverKey = config('midtrans.serverKey');

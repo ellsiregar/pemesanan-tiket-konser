@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('transaksi', function (Blueprint $table) {
-            $table->string('snap_token')->after('amount'); // Menambahkan kolom snap_token setelah kolom amount
+            $table->string('snap_token')->after('amount')->nullable(); // Menambahkan kolom snap_token setelah kolom amount
         });
     }
 

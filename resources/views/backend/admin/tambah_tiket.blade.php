@@ -15,13 +15,18 @@
                         <div class="mb-3">
                             <label for="id_kategori_tiket" class="form-label">Kategori Tiket</label>
                             <select name="id_kategori_tiket" id="id_kategori_tiket" class="form-select">
-                                <option value="{{old('id_kategori_tiket')}}">-pilih-</option>
-                                @foreach ($KategoriTikets as $KategoriTiket)
-                                    <option value="{{ $KategoriTiket->id_kategori_tiket }}">
-                                      {{$KategoriTiket->Konser->nama_konser}} - {{$KategoriTiket->nama_kategori}}
-                                    </option>
+                                <option value="">-pilih-</option>
+                                @foreach ($KategoriTikets->groupBy('nama_kategori') as $kategori => $items)
+                                    <optgroup label="{{ $kategori }}">
+                                        @foreach ($items as $item)
+                                            <option value="{{ $item->id_kategori_tiket }}">
+                                                {{ $item->Konser->nama_konser }}
+                                            </option>
+                                        @endforeach
+                                    </optgroup>
                                 @endforeach
                             </select>
+
                             <div class="text-danger">
                                 @error('id_kategori_tiket')
                                     {{ $message }}

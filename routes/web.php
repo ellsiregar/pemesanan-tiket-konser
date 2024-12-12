@@ -6,7 +6,6 @@ use App\Http\Controllers\Backend\DiskonController;
 use App\Http\Controllers\Backend\KategoriTiketController;
 use App\Http\Controllers\Backend\KonserController;
 use App\Http\Controllers\Backend\ReviewsController;
-use App\Http\Controllers\Backend\SeatAllocationsController;
 use App\Http\Controllers\Backend\TiketController;
 use App\Http\Controllers\Backend\TiketDiskonController;
 use App\Http\Controllers\Backend\TransaksiController;
@@ -56,12 +55,6 @@ Route::middleware(['role:admin'])->group(function () {
     Route::put('/admin/tiket/edit/{id_tiket}', [TiketController::class, 'update'])->name('tiket_update');
     Route::get('/admin/tiket/delete/{id_tiket}',[TiketController::class, "delete"])->name('tiket_delete');
 
-    Route::get('/admin/tiket/{id_tiket}/seat',[SeatAllocationsController::class,"seat"])->name('seat');
-    Route::get('/admin/tiket/{id_tiket}/seat/create',[SeatAllocationsController::class,"create"])->name('seat_create');
-    Route::post('/admin/tiket/{id_tiket}/seat/store',[SeatAllocationsController::class,"store"])->name('seat_store');
-    Route::get('/admin/tiket/{id_tiket}/seat/edit/{id_lokasi}', [SeatAllocationsController::class, "edit"])->name('seat_edit');
-    Route::put('/admin/tiket/{id_tiket}/seat/edit{id_lokasi}',[SeatAllocationsController::class,"update"])->name('seat_update');
-    Route::get('/admin/tiket/{id_tiket}/seat/delete/{id_lokasi}',[SeatAllocationsController::class,"delete"])->name('seat_delete');
 
     Route::get('/admin/diskon',[DiskonController::class,"diskon"])->name('diskon');
     Route::get('/admin/diskon/create',[DiskonController::class,"create"])->name('diskon_create');
@@ -73,9 +66,11 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/tiket_diskon',[TiketDiskonController::class,"tiket_diskon"])->name('TiketDiskon');
 
     Route::get('/admin/transaksi',[TransaksiController::class,"transaksi"])->name('transaksi');
+    Route::get('/admin/transaksi/cetak/{id}',[TransaksiController::class,"cetak"])->name('cetak');
+    Route::get('/admin/transaksi/delete{transaksi}',[TransaksiController::class,"transaksiDelete"])->name('transaksiDelete');
 
     Route::get('/admin/review',[ReviewsController::class,"review"])->name('review');
-
+    Route::get('/admin/review/delete{review}',[ReviewsController::class,"reviewDelete"])->name('reviewDelete');
 });
 
 Route::middleware(['role:user'])->group(function(){
@@ -94,7 +89,6 @@ Route::middleware(['role:user'])->group(function(){
     Route::post('/submit-review', [FrontendReviewsController::class, 'submitReview'])->name('user.submitReview');
 
     Route::get('/user/history', [UserController::class, 'history'])->name('user.history');
+    Route::get('/user/history/cetak/{id}', [UserController::class, 'cetak'])->name('user.cetak');
     Route::get('/user/history/delete{transaksi}', [UserController::class, 'deleteHistory'])->name('user.delete');
-
-
 });

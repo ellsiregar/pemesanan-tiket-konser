@@ -73,6 +73,7 @@
                                 <td>
                                     @if ($item->payment_status == 'completed')
                                         <button class="btn btn-success btn-sm">Selesai</button>
+                                        <a href="{{ route('user.cetak', $item->id_transaksi) }}" class="btn btn-info btn-sm">Cetak</a>
                                     @else
                                         <a href="{{ route('user.checkout', $item->id_transaksi) }}" class="btn btn-warning btn-sm">Bayar</a>
                                         <a href="{{ route('user.delete', $item->id_transaksi) }}" class="btn btn-danger btn-sm">Hapus</a>

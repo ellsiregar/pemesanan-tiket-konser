@@ -1,6 +1,6 @@
 @extends('backend.admin.layouts.app')
 
-@section('title', 'transaksi')
+@section('title', 'Transaksi')
 
 @section('content')
 
@@ -18,22 +18,29 @@
                     <thead>
                         <tr class="border-2 border-bottom border-primary border-0">
                             <th scope="col">No</th>
+                            <th scope="col">Nama Pembeli</th>
+                            <th scope="col">Nama Konser</th>
                             <th scope="col">Tiket</th>
-                            <th scope="col">Payment Method</th>
                             <th scope="col">Payment Status</th>
                             <th scope="col">Transaction Date</th>
                             <th scope="col">Amount</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
                         @foreach ($transaksis as $transaksi)
                         <tr>
                             <th scope="row">{{  $loop->iteration }}</th>
-                            <td>{{ $transaksi->tiket->KategoriTiket->nama_kategori}}</td>
-                            <td>{{ $transaksi->payment_method}}</td>
+                            <td>{{ $transaksi->user->name }}</td>
+                            <td>{{ $transaksi->user->name }}</td>
+                            <td>{{ $transaksi->tiket->KategoriTiket->Konser->nama_konser}}</td>
                             <td>{{ $transaksi->payment_status}}</td>
                             <td>{{ $transaksi->transaction_date}}</td>
                             <td>{{ $transaksi->amount}}</td>
+                            <td class="text-center">
+                                <a href="{{route('cetak', $transaksi->id_transaksi)}}" class="btn btn-info btn-sm">Cetak</a>
+                                <a href="{{route('transaksiDelete', $transaksi->id_transaksi)}}" onclick="return confirm('Yakin ingin hapus data?')" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

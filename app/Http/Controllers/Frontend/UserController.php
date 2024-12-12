@@ -126,4 +126,9 @@ class UserController extends Controller
 
     }
 
+    public function cetak($id)
+    {
+        $item = Transaksi::find($id);
+        return view('frontend.user.nota', compact('item'));
+    }
 }

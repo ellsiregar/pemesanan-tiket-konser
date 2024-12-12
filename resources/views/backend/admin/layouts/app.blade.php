@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ asset('../assets/css/styles.min.css') }}" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -65,14 +67,6 @@
                                     <iconify-icon icon="mdi:tag-outline" class="fs-6"></iconify-icon>
                                 </span>
                                 <span class="hide-menu">Diskon</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('TiketDiskon') }}" aria-expanded="false">
-                                <span>
-                                    <iconify-icon icon="mdi:ticket-percent-outline" class="fs-6"></iconify-icon>
-                                </span>
-                                <span class="hide-menu"> Tiket Diskon</span>
                             </a>
                         </li>
                         <li class="sidebar-item">

@@ -65,9 +65,11 @@
                         <td class="unit-price">Rp {{ number_format($tiket->harga_tiket, 0, ',', '.') }}</td>
                         <td class="available">{{ $tiket->quantity }}</td>
                         <td>
-                            <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity(this, -1)">-</button>
+                            <button class="btn btn-outline-secondary btn-sm"
+                                onclick="updateQuantity(this, -1)">-</button>
                             <span class="mx-2 quantity">1</span>
-                            <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity(this, 1)">+</button>
+                            <button class="btn btn-outline-secondary btn-sm"
+                                onclick="updateQuantity(this, 1)">+</button>
                         </td>
                         <td class="item-total">Rp {{ number_format($tiket->harga_tiket, 0, ',', '.') }}</td>
                         <td>
@@ -95,7 +97,8 @@
             <!-- Total Harga -->
             <div class="d-flex justify-content-between align-items-center">
                 <h4>Total Keseluruhan:</h4>
-                <span id="grand-total" class="total-price">Rp {{ number_format($tiket->harga_tiket, 0, ',', '.') }}</span>
+                <span id="grand-total" class="total-price">Rp
+                    {{ number_format($tiket->harga_tiket, 0, ',', '.') }}</span>
             </div>
 
             <!-- Tombol Checkout -->
@@ -104,6 +107,8 @@
                     @csrf
                     <input type="hidden" name="id_tiket" value="{{ $tiket->id_tiket }}">
                     <input type="hidden" name="amount" id="amount" value="{{ $tiket->harga_tiket }}">
+                    <input type="hidden" name="ticket_quantity" id="ticket_quantity" value="1">
+                    <!-- Kuantitas tiket -->
                     <button type="submit" class="btn btn-success btn-lg w-100">Lanjutkan ke Pembayaran</button>
                 </form>
             </div>
@@ -133,12 +138,17 @@
                 return;
             }
 
+            // Update kuantitas
             quantity = Math.max(1, quantity + delta);
             quantityElement.textContent = quantity;
 
             const itemTotal = quantity * unitPrice;
             itemTotalElement.textContent = `Rp ${itemTotal.toLocaleString()}`;
 
+            // Perbarui nilai ticket_quantity sesuai dengan kuantitas yang dipilih
+            document.getElementById("ticket_quantity").value = quantity;
+
+            // Perbarui total keseluruhan
             updateGrandTotal();
         }
 
